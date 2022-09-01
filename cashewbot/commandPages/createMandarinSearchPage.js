@@ -1,30 +1,6 @@
 const chineseLexicon = require('chinese-lexicon')
 const { EmbedBuilder } = require('discord.js');
 
-const haveSameData = function(obj1, obj2) {
-        const obj1Length = Object.keys(obj1).length;
-        const obj2Length = Object.keys(obj2).length;
-  
-        if(obj1Length === obj2Length) {
-            return Object.keys(obj1).every(
-                key => obj2.hasOwnProperty(key)
-                   && obj2[key] === obj1[key]);
-        }
-        return false;
-    }
-
-const removeDuplicate = function(array) {
-    for (let i = 0; i < array.length; i++) {
-        for (let j = 0; j < array.length; j++) {
-            if (i !== j) {
-                if (haveSameData(array[i], array[j])) {
-                    array.splice(j, 1)
-                }
-            }
-        }
-    }
-    return array;
-}
 function isAlpha(str) {
     return /^[a-zA-Z]+$/.test(str);
   }

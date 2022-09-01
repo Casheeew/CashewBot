@@ -30,7 +30,7 @@ const wordSearchEmbed = new EmbedBuilder()
 	.setColor(0x0099FF) //Sky Blue
 	.setFooter({ text: 'You can click the reactions below to see more information!', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg' });
 
-const returnLookUpWordEmbed = function(message) {
+const returnLookUpWordEmbed = async function(message) {
 
     const embed = new EmbedBuilder(wordSearchEmbed.data)
     

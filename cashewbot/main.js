@@ -23,25 +23,43 @@ const client = new Client({
 
 });
 
-const switchBetweenCommands = function(message) {
-    messageContent = message.content.substring(3)
-    switch(message.content.substring(0, 3)) {
-        case '[s ':
-            message.channel.send({embeds: [mandarinSearch.search(messageContent)]});
-            break;
-
-        case '[k ':
-            kyujitai.convertKyujitaiShinjitai(messageContent, (str) => message.channel.send(str));
-            break;
-
-        case '[h ':
-            message.channel.send({embeds: [returnHelpPage.returnHelpPage()]})
-            break;
-            
-        }
+class Command {
+    constructor(name, run) {
+        this.name = name,
+        this.run = run
     }
-    
+}
 
+const getContent = function(msg) { 
+    return msg.content.slice(msg.content.indexOf(' ')+1)
+}
+
+const searchCommand = new Command('search', async msg => {
+    msg.channel.send({embeds: [await mandarinSearch.search(getContent(msg))]})
+})
+const kyujiCommand = new Command('kyuji', async msg => {
+    kyujitai.convertKyujitaiShinjitai(getContent(msg), str => msg.channel.send(str))
+})
+const helpCommand = new Command('help', async msg => msg.channel.send({embeds: [returnHelpPage.returnHelpPage()]}))
+   
+
+const commands = {
+    's': searchCommand.run,
+    'search': searchCommand.run,
+    'k': kyujiCommand.run,
+    'kyuji': kyujiCommand.run,
+    'h': helpCommand.run,
+    'help': helpCommand.run,
+  };
+  
+  const switchBetweenCommands = async msg => {
+    for (const cmdname in commands) {
+      if (msg.content.startsWith(`[${cmdname}`)) {
+        return await commands[cmdname](msg);
+      }
+    }
+  };
+  
 client.on("messageCreate", message => {
 
     if (message.partial) {

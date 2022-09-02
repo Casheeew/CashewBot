@@ -1,9 +1,7 @@
 const chineseLexicon = require('chinese-lexicon')
 const { EmbedBuilder } = require('discord.js');
+const {isAlpha, isEmpty} = require('../commandPages/helper.js')
 
-function isAlpha(str) {
-    return /^[a-zA-Z]+$/.test(str);
-  }
 const wordSearchEmbed = new EmbedBuilder()
 	.setColor(0x0099FF) //Sky Blue
     
@@ -18,9 +16,7 @@ const returnLookUpWordEmbed = async function(message) {
     else {
         var wordInfo = await chineseLexicon.getEntries(message)
     }
-    
-    const isEmpty = obj => Object.keys(obj).length===0;
-    
+        
     if (isEmpty(wordInfo)) {
         embed.setTitle(`Search`)
         embed.setDescription(`I couldn\'t find any results for **${message}**`)

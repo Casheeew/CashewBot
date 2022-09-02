@@ -30,9 +30,7 @@ class Command {
     }
 }
 
-const getContent = function(msg) { 
-    return msg.content.slice(msg.content.indexOf(' ')+1)
-}
+const getContent = msg => msg.content.slice(msg.content.indexOf(' ')+1)
 
 const searchCommand = new Command('search', async msg => {
     msg.channel.send({embeds: [await mandarinSearch.search(getContent(msg))]})

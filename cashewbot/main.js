@@ -82,4 +82,4 @@ client.once('ready', c => {
 })
 
 // Login to Discord with your client's token
-client.login(config.bot.botToken);
+client.login(process.env.botToken);

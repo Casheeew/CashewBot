@@ -1,7 +1,6 @@
 // Require the necessary discord.js classes
 const { Client, GatewayIntentBits, Partials, channelLink } = require('discord.js');
-
-const mandarinSearch = require('./commands/mandarinSearch.js')
+const mandarinSearch = require('./commands/mandarinSearch.js');
 const kyujitai = require('./commands/kyujitai.js');
 const { helpPage } = require('./commands/help.js');
 const { aboutPage } = require('./commands/about.js');
@@ -13,12 +12,12 @@ const client = new Client({
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
-    GatewayIntentBits.GuildMembers
+    GatewayIntentBits.GuildMembers,
 ],
     partials: [
         Partials.Message,
         Partials.Channel,
-        Partials.Reaction
+        Partials.Reaction,
     ]
 
 });

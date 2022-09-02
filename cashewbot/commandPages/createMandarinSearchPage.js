@@ -5,6 +5,19 @@ const {isAlpha, isEmpty} = require('../commandPages/helper.js')
 const wordSearchEmbed = new EmbedBuilder()
 	.setColor(0x0099FF) //Sky Blue
     
+class Word {
+    constructor(data) {
+        this.data = data;
+    }
+
+    get simp(){return this.data.simp;}
+    get trad(){return this.data.trad;}
+    get definitions(){return this.data.definitions;}
+    get pinyin(){return this.data.pinyin;}
+    get stats(){return this.data.statistics;}
+    
+}
+
 const returnLookUpWordEmbed = async function(message) {
     
     const embed = new EmbedBuilder(wordSearchEmbed.data);
@@ -12,8 +25,7 @@ const returnLookUpWordEmbed = async function(message) {
     // If the searched word is alphabetical, search the matching chinese entries
     if (isAlpha(message)) {
         var wordInfo = await chineseLexicon.search(message)
-    }
-    else {
+    } else {
         var wordInfo = await chineseLexicon.getEntries(message)
     }
         
@@ -23,22 +35,18 @@ const returnLookUpWordEmbed = async function(message) {
         return embed
     }
     
+    for (let i = 0; i < Math.min(wordInfo.length, 4); i++) {
+        word = new Word(wordInfo[i])
+
+        embed.addFields(
+            {name: `${word.simp} | ${word.trad}`, value: `\`HSK Level: ${word.stats.hskLevel}\`\n(${word.pinyin}) *${word.definitions.join(', ')}*`},
+        )
+    }
+
     embed.setTitle(`Search results for "${message}"`)
          .setFooter({ text: 'You can click the reactions below to see more information!', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg' });
-    
-    for (let i = 0; i < Math.min(wordInfo.length, 4); i++) {
         
-        var simplified = wordInfo[i].simp
-        var traditional = wordInfo[i].trad
-        var definitions = wordInfo[i].definitions
-        var pinyin = wordInfo[i].pinyin
-        var statistics = wordInfo[i].statistics
-        
-        embed.addFields(
-            {name: `${simplified} | ${traditional}`, value: `\`Hsk Level: ${statistics.HskLevel}\`\n(${pinyin}) *${definitions.join(', ')}*`},
-        )
 
-    }
     return embed
 }
 

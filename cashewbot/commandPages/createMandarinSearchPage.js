@@ -44,7 +44,7 @@ const returnLookUpWordEmbed = async function(message) {
     }
 
     embed.setTitle(`Search results for "${message}"`)
-         .setFooter({ text: 'You can click the reactions below to see more information!', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg' });
+         .setFooter({ text: 'You can tap the reactions below to see more information!', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg' });
         
 
     return embed

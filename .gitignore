@@ -4,6 +4,7 @@
 =======
 # Config
 cashewbot/config.js
+cashewbot/node_modules/
 
 # Logs
 logs

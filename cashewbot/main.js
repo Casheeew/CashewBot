@@ -52,7 +52,7 @@ const commands = {
   
   const switchBetweenCommands = async msg => {
     for (const cmdname in commands) {
-      if (msg.content.startsWith(`[${cmdname}`)) {
+      if (msg.content.startsWith(`!${cmdname}`)) {
         return await commands[cmdname](msg);
       }
     }

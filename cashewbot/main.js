@@ -34,12 +34,12 @@ client.on("messageCreate", message => {
 } else {
     if (message.author.bot) return;
     switchBetweenCommands(message);
-}})
+}});
 
 // When the client is ready, run this code (only once)
 client.once('ready', c => {
 	console.log(`Ready! Logged in as ${c.user.tag} `);
-})
+});
 
 // Login to Discord with your client's token
 client.login(process.env.botToken);

@@ -1,14 +1,28 @@
-const Kyujitai = require('kyujitai')
+const Kyujitai = require('kyujitai');
+const { EmbedBuilder } = require('discord.js');
+var prefix = '!';
 
 function convertKyujitaiShinjitai(message, fn) {
-const kyujitai = new Kyujitai ((error) => {
-    encoded = kyujitai.encode(message)
-    if (converted == message) {
-      fn(kyujitai.decode(message)) // If original message is Kyujitai, convert to Shinjitai
-    } else {
-      fn(converted)
-    }
-  })
-}
+  const kyujitai = new Kyujitai ((error) => {
+    if (!message) {
+      embed = new EmbedBuilder()
+      .setColor(0x0099FF) // Sky Blue
+      .setAuthor({ name: '叉焼', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg'})
+      .setTitle('Shinjitai - Kyujitai convert')
+      .setDescription(`Say **${prefix}k** or **${prefix}kyuji** to convert a Japanese sentence from [Shinjitai(新字体)](https://en.wikipedia.org/wiki/Shinjitai) to [Kyujitai(旧字体)](https://en.wikipedia.org/wiki/Ky%C5%ABjitai)!\n\nexample: **${prefix}k 成歩堂竜ノ介の冒険と覚悟**`);
+      
+      console.log(embed);
+      fn({embeds: [embed]});
+      return;
+    };
 
-exports.convertKyujitaiShinjitai = convertKyujitaiShinjitai
+    encoded = kyujitai.encode(message);
+    if (encoded == message) {
+      fn(kyujitai.decode(message)); // If original message is Kyujitai, convert to Shinjitai
+    } else {
+      fn(encoded);
+    };
+  });
+};
+
+exports.convertKyujitaiShinjitai = convertKyujitaiShinjitai;

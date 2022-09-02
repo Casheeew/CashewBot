@@ -1,10 +1,11 @@
 // Require the necessary discord.js classes
 const { Client, GatewayIntentBits, Partials, channelLink } = require('discord.js');
-const { token } = require('./config.json');
+const config = require('./config.js');
 
 const mandarinSearch = require('./commands/mandarinSearch.js')
 const kyujitai = require('./commands/kyujitai.js');
-const returnHelpPage = require('./commands/help.js');
+const { helpPage } = require('./commands/help.js');
+const { aboutPage } = require('./commands/about.js');
 
 // Create a new client instance
 const client = new Client({
@@ -38,8 +39,8 @@ const searchCommand = new Command('search', async msg => {
 const kyujiCommand = new Command('kyuji', async msg => {
     kyujitai.convertKyujitaiShinjitai(getContent(msg), str => msg.channel.send(str))
 })
-const helpCommand = new Command('help', async msg => msg.channel.send({embeds: [returnHelpPage.returnHelpPage()]}))
-   
+const helpCommand = new Command('help', async msg => msg.channel.send({embeds: [helpPage]}))
+const aboutCommand = new Command('about', async msg => msg.channel.send({embeds: [aboutPage]}))
 
 const commands = {
     's': searchCommand.run,
@@ -47,7 +48,8 @@ const commands = {
     'k': kyujiCommand.run,
     'kyuji': kyujiCommand.run,
     'h': helpCommand.run,
-    'help': helpCommand.run,
+    'help': helpCommand.run, 
+    'about': aboutCommand.run,
   };
   
   const switchBetweenCommands = async msg => {
@@ -80,4 +82,4 @@ client.once('ready', c => {
 })
 
 // Login to Discord with your client's token
-client.login(token);
+client.login(config.bot.botToken);

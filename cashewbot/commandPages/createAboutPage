@@ -1,0 +1,12 @@
+const { EmbedBuilder } = require('discord.js');
+const config = require('../config.js')
+
+
+const aboutPageEmbed = new EmbedBuilder()
+    .setColor(0x70FA70) // Grassy Green
+    .setAuthor({ name: '叉焼', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg'})
+    .setTitle('About me')
+    .setDescription(`Make suggestions, report bugs, ask for help here: [Support server](${config.support_server_url})\n\n**叉焼** uses data from: \n- CC-CEDICT`)
+
+exports.aboutPageEmbed = aboutPageEmbed
+

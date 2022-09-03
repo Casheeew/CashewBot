@@ -15,7 +15,7 @@ class Word {
     
 }
 
-const returnLookUpWordEmbed = async function(message) {
+const returnLookUpWordEmbed = async function(message, startIdx) {
     
     const embed = new EmbedBuilder().setColor(0x0099FF); // Sky Blue
     
@@ -29,12 +29,12 @@ const returnLookUpWordEmbed = async function(message) {
     if (isEmpty(wordInfo)) {
         embed.setTitle(`Search`);
         embed.setDescription(`I couldn\'t find any results for **${message}**`);
-        return embed
-    }
+        return embed 
+    } // Returns default embed if no word information is found
     
-    for (let i = 0; i < Math.min(wordInfo.length, 4); i++) {
+    entriesCount = wordInfo.length
+    for (let i = startIdx; i < Math.min(wordInfo.length, startIdx+4); i++) {
         word = new Word(wordInfo[i]);
-
         embed.addFields(
             {name: `${word.simp} | ${word.trad}`, value: `\`HSK Level: ${word.stats.hskLevel}\`\n(${word.pinyin}) *${word.definitions.join(', ')}*`},
         )
@@ -42,9 +42,7 @@ const returnLookUpWordEmbed = async function(message) {
 
     embed.setTitle(`Search results for "${message}"`)
          .setFooter({ text: 'You can tap the reactions below to see more information!', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg' });
-        
-
-    return embed;
+    return {embed: embed, entriesCount: entriesCount};
 }
 
 exports.returnLookUpWordEmbed = returnLookUpWordEmbed;

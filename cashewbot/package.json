@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "discord.js": "^14.3.0",
-    "sequelize": "^6.21.4",
-    "sqlite3": "^5.0.11"
-  }
-}

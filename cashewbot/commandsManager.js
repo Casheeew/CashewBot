@@ -108,7 +108,7 @@ const searchCommand = new Command('search', async msg => {
   var searchResult = await mandarinSearch.search(getContent(msg), pageIdx)
   var result = await msg.channel.send({embeds: [await searchResult.embed]});
   
-  if (searchResult.help) return;
+  if (await searchResult.help) return;
   const switchBetweeenReactions = async function(reaction) {
     switch (reaction.emoji.name) {
       case openBook.name:

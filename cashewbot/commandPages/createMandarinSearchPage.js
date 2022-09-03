@@ -7,11 +7,11 @@ class Word {
         this.data = data;
     }
 
-    get simp(){return this.data.simp};
-    get trad(){return this.data.trad};
-    get definitions(){return this.data.definitions};
-    get pinyin(){return this.data.pinyin};
-    get stats(){return this.data.statistics};
+    get simp() { return this.data.simp };
+    get trad() { return this.data.trad };
+    get definitions() { return this.data.definitions };
+    get pinyin() { return this.data.pinyin };
+    get stats() { return this.data.statistics };
     
 }
 
@@ -30,8 +30,8 @@ const returnLookUpWordEmbed = async function(message, startIdx) {
         embed.setTitle(`Search`);
         embed.setDescription(`I couldn\'t find any results for **${message}**`);
         return embed 
-    } // Returns default embed if no word information is found
-    
+    } 
+
     entriesCount = wordInfo.length
     for (let i = startIdx; i < Math.min(wordInfo.length, startIdx+4); i++) {
         word = new Word(wordInfo[i]);

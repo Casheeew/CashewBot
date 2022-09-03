@@ -11,7 +11,6 @@ function convertKyujitaiShinjitai(message, fn) {
       .setTitle('Shinjitai - Kyujitai convert')
       .setDescription(`Say **${prefix}k** or **${prefix}kyuji** to convert a Japanese sentence from [Shinjitai(新字体)](https://en.wikipedia.org/wiki/Shinjitai) to [Kyujitai(旧字体)](https://en.wikipedia.org/wiki/Ky%C5%ABjitai)!\n\nexample: **${prefix}k 成歩堂竜ノ介の冒険と覚悟**`);
       
-      console.log(embed);
       fn({embeds: [embed]});
       return;
     };

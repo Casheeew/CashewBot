@@ -10,9 +10,9 @@ const search = async function(message, pageIdx) {
         .setTitle('Mandarin Search')
         .setDescription(`Say **${prefix}s** or **${prefix}search** to search a Mandarin or English word!\n\nexample: **${prefix}s 蔀**`);
 
-        return embed;
+        return {embed, maxPageIdx: -1, help: true};
     };
     result = await mandarinSearch.returnLookUpWordEmbed(message, pageIdx*4)
-    return {embed: result.embed, maxPageIdx: Math.floor(result.entriesCount / 4)}; // Each page has max. 4 entries
+    return {embed: result.embed, maxPageIdx: Math.floor(result.entriesCount / 4), help: false}; // Each page has max. 4 entries
 };
 exports.search = search;

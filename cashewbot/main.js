@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits, Partials, channelLink } = require('discord.js');
-const { switchBetweenCommands } = require('../cashewbot/commandsManager.js');
+const { switchBetweenCommands, UserData, GuildData } = require('../cashewbot/commandsManager.js');
+
 // Create a new client instance
 const client = new Client({
     intents: [
@@ -24,7 +25,9 @@ client.on("messageCreate", message => {
 
 // When the client is ready, run this code (only once)
 client.once('ready', c => {
-	console.log(`Ready! Logged in as ${c.user.tag} `);
+    UserData.sync({}); 
+    GuildData.sync({}); // Recreate table every time on startup, disable outside of testing
+    console.log(`Logged in as ${c.user.tag}!`);
 });
 
 // Login to Discord with your client's token

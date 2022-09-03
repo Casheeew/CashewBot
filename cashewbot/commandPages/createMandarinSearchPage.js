@@ -16,7 +16,7 @@ class Word {
 }
 
 const returnLookUpWordEmbed = async function(message, startIdx) {
-    
+
     const embed = new EmbedBuilder().setColor(0x0099FF); // Sky Blue
     
     // If the searched word is alphabetical, search the matching chinese entries
@@ -25,14 +25,13 @@ const returnLookUpWordEmbed = async function(message, startIdx) {
     } else {
         var wordInfo = await chineseLexicon.getEntries(message);
     }
-        
-    if (isEmpty(wordInfo)) {
+    entriesCount = wordInfo.length
+    if (entriesCount === 0) {
         embed.setTitle(`Search`);
         embed.setDescription(`I couldn\'t find any results for **${message}**`);
-        return embed 
+        return {embed, entriesCount};
     } 
 
-    entriesCount = wordInfo.length
     for (let i = startIdx; i < Math.min(wordInfo.length, startIdx+4); i++) {
         word = new Word(wordInfo[i]);
         embed.addFields(
@@ -42,7 +41,7 @@ const returnLookUpWordEmbed = async function(message, startIdx) {
 
     embed.setTitle(`Search results for "${message}"`)
          .setFooter({ text: 'You can tap the reactions below to see more information!', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg' });
-    return {embed: embed, entriesCount: entriesCount};
+    return {embed, entriesCount};
 }
 
 exports.returnLookUpWordEmbed = returnLookUpWordEmbed;

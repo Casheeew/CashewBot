@@ -18,7 +18,7 @@ const prefixHandler = async function(msg, GuildData) {
       embed.setTitle('Set Prefix')
            .setDescription(`Say **${await currentPrefix}prefix**, followed by a prefix or a list of prefixes, seperated by a space to change the prefix for this server! (requires admin priviledges)\n\nexample: ${currentPrefix}prefix ? c!    (default: !)`);
      
-      msg.channels.send({embeds: [embed]});
+      msg.channel.send({embeds: [embed]});
       return;
     };
   

@@ -1,4 +1,4 @@
-const aboutPageEmbed = require('../commandPages/createAboutPage');
+const aboutPageEmbed = require('../commandPages/aboutPage');
 const aboutPage = function(msg) {
     msg.channel.send({ embeds: [aboutPageEmbed.aboutPageEmbed] });
 }

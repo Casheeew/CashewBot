@@ -27,8 +27,8 @@ const commands = {
   'kyuji': kyujiCommand.run,
   'h': helpCommand.run,
   'help': helpCommand.run, 
-  'q': quizCommand.run,
-  'quiz': quizCommand.run,
+  // 'q': quizCommand.run,
+  // 'quiz': quizCommand.run,
   'about': aboutCommand.run,
   'prefix': prefixCommand.run
 };

@@ -1,19 +1,20 @@
 const Kyujitai = require('kyujitai');
 const { EmbedBuilder } = require('discord.js');
-const { getContent } = require('./commandsHelper.js')
-var prefix = '!';
+const { processMessage } = require('./commandsHelper.js');
 
-function convertKyujitaiShinjitai(msg) {
-  message = getContent(msg);
-  const kyujitai = new Kyujitai ((error) => {
+const convertKyujitaiShinjitai = async (msg, prefix) => {
+  const processedMessage = processMessage(msg);
+  message = processedMessage.value;
+  
+  const kyujitai = new Kyujitai(async (error) => {
     if (!message) {
       embed = new EmbedBuilder()
-      .setColor(0x0099FF) // Sky Blue
-      .setAuthor({ name: '叉焼', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg'})
-      .setTitle('Shinjitai - Kyujitai convert')
-      .setDescription(`Say **${prefix}k** or **${prefix}kyuji** to convert a Japanese sentence from [Shinjitai(新字体)](https://en.wikipedia.org/wiki/Shinjitai) to [Kyujitai(旧字体)](https://en.wikipedia.org/wiki/Ky%C5%ABjitai)!\n\nexample: **${prefix}k 成歩堂竜ノ介の冒険と覚悟**`);
-      
-      msg.channel.send({embeds: [embed]});
+        .setColor(0x0099FF) // Sky Blue
+        .setAuthor({ name: '叉焼', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg' })
+        .setTitle('Shinjitai - Kyujitai convert')
+        .setDescription(`Say **${prefix}k** or **${prefix}kyuji** to convert a Japanese sentence from [Shinjitai(新字体)](https://en.wikipedia.org/wiki/Shinjitai) to [Kyujitai(旧字体)](https://en.wikipedia.org/wiki/Ky%C5%ABjitai)!\n\nexample: **${prefix}k 成歩堂竜ノ介の冒険と覚悟**`);
+
+      msg.channel.send({ embeds: [embed] });
       return;
     };
 

@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits, Partials, channelLink } = require('discord.js');
-const { switchBetweenCommands, UserData, GuildData } = require('../cashewbot/commandsManager.js');
+const { switchBetweenCommands } = require('../cashewbot/commandsManager.js');
+const { UserData, GuildData } = require('./commands/commandsHelper.js')
 
 // Create a new client instance
 const client = new Client({

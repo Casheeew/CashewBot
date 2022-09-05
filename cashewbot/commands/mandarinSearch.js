@@ -1,8 +1,6 @@
 const { returnLookUpWordEmbed } = require('../commandPages/createMandarinSearchPage.js');
 const { EmbedBuilder } = require('discord.js');
-const { getContent } = require('./commandsHelper.js');
-
-var prefix = '!';
+const { processMessage } = require('./commandsHelper.js');
 
 class ReactionCommand {
     constructor(name, id) {
@@ -15,7 +13,7 @@ const openBook = new ReactionCommand('OpenBook', '1015246188359979108')
 const arrowLeft = new ReactionCommand('LeftArrow', '1015443770113806491')
 const arrowRight = new ReactionCommand('RightArrow', '1015443768012455976')
   
-const search = async function(message, pageIdx) {
+const search = async function(message, pageIdx, prefix) {
     if (!message) {
         embed = new EmbedBuilder()
         .setColor(0x0099FF) // Sky Blue
@@ -29,10 +27,11 @@ const search = async function(message, pageIdx) {
     return {embed: result.embed, maxPageIdx: Math.floor(result.entriesCount / 4), help: false}; // Each page has max. 4 entries
 };
 
-const mandarinSearch = async function(msg) {
-  var pageIdx = 0
-  var searchResult = await search(getContent(msg), pageIdx)
-  var result = await msg.channel.send({embeds: [await searchResult.embed]});
+const mandarinSearch = async function(msg, prefix) {
+  const processedMessage = processMessage(msg);
+  var pageIdx = 0;
+  const searchResult = await search(processedMessage.value, pageIdx, prefix);
+  const result = await msg.channel.send({embeds: [await searchResult.embed]});
   
   if (searchResult.help) return;
   const switchBetweeenReactions = async function(reaction) {

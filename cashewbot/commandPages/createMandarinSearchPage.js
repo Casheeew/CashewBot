@@ -37,7 +37,7 @@ const returnLookUpWordEmbed = async function(message, startIdx) {
         embed.addFields(
             {name: `${word.simp} | ${word.trad}`, value: `\`HSK Level: ${word.stats.hskLevel}\`\n(${word.pinyin}) *${word.definitions.join(', ')}*`},
         )
-    };
+    }; //toDo: Change this to send all page embeds
 
     embed.setTitle(`Search results for "${message}"`)
          .setFooter({ text: 'You can tap the reactions below to see more information!', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg' });

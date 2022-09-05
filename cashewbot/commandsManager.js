@@ -1,38 +1,10 @@
-const Sequelize = require('sequelize');
-
+const { initiateQuiz } = require('./commands/quiz.js')
 const { mandarinSearch }  = require('./commands/mandarinSearch.js');
 const { convertKyujitaiShinjitai } = require('./commands/kyujitai.js');
 const { helpPage } = require('./commands/help.js');
 const { aboutPage } = require('./commands/about.js');
-const { prefixHandler } = require('./commands/prefix.js')
-const { getContent } = require('./commands/commandsHelper.js')
-
-const sequelize = new Sequelize('database', 'user', 'password', {
-  host: 'localhost',
-  dialect: 'sqlite',
-  logging: false,
-  storage: 'database.sqlite',
-}) // Connection information
-
-const UserData = sequelize.define('userData', {
-  userId: {
-    type: Sequelize.STRING,
-    unique: true,
-  },
-});
-
-const GuildData = sequelize.define('guildData', {
-  guildId: {
-    type: Sequelize.STRING,
-    unique: true,
-  },
-  name: Sequelize.STRING,
-  prefix: {
-    type: Sequelize.STRING,
-    defaultValue: '!',
-    allowNull: false,
-  },
-});
+const { prefixHandler } = require('./commands/prefix.js');
+const { getPrefixes } = require('./commands/commandsHelper.js');
 
 class Command {
   constructor(name, run) {
@@ -41,11 +13,12 @@ class Command {
   };
 };
 
-const prefixCommand = new Command('prefix', async msg => prefixHandler(msg, GuildData));
-const searchCommand = new Command('search', async msg => mandarinSearch(msg));
-const kyujiCommand = new Command('kyuji', async msg => convertKyujitaiShinjitai(msg));
-const helpCommand = new Command('help', async msg => helpPage(msg));
-const aboutCommand = new Command('about', async msg => aboutPage(msg));
+const prefixCommand = new Command('prefix', async (msg, prefix) => prefixHandler(msg, prefix));
+const searchCommand = new Command('search', async (msg, prefix) => mandarinSearch(msg, prefix));
+const kyujiCommand = new Command('kyuji', async (msg, prefix) => convertKyujitaiShinjitai(msg, prefix));
+const quizCommand = new Command('quiz', async (msg, prefix) => initiateQuiz(msg, prefix));
+const helpCommand = new Command('help', async (msg, prefix) => helpPage(msg, prefix));
+const aboutCommand = new Command('about', async (msg, prefix) => aboutPage(msg));
 
 const commands = {
   's': searchCommand.run,
@@ -56,30 +29,21 @@ const commands = {
   'help': helpCommand.run, 
   'about': aboutCommand.run,
   'prefix': prefixCommand.run,
+  'quiz': quizCommand.run
 };
 
 const switchBetweenCommands = async msg => {
-
-  const guildData = await GuildData.findOne({ where: { guildId: msg.guild.id } });
-  try{
-    var prefixList = await guildData.get('prefix').split(' ');
-  } 
-  catch (e) {
-    if (e instanceof TypeError) {
-      var prefixList = ['!'];
-    } else { console.error(e); };
-  }; // If guildData is uninitialized, set default prefix '!'
+  const prefixStr = await getPrefixes(msg.guild);
+  const prefixList = await prefixStr.split(' ');
 
   for (const cmdname in commands) {
     for (const prefix of prefixList) {
       if (msg.content.split(' ')[0] == `${await prefix}${cmdname}`) {
-        return await commands[cmdname](msg);
+        return await commands[cmdname](msg, prefix);
       }
     }
   }
 };
 
 exports.switchBetweenCommands = switchBetweenCommands
-exports.UserData = UserData
-exports.GuildData = GuildData
 // 0x70FA70 Grassy Green

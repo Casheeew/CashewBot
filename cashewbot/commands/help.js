@@ -1,6 +1,8 @@
 const helpPageEmbed = require('../commandPages/createHelpPage');
-const helpPage = function(msg) {
-    msg.channel.send({ embeds: [helpPageEmbed.helpPageEmbed] });
+
+const helpPage = async function(msg, prefix) {
+    const embed = helpPageEmbed.helpPageEmbed(prefix);
+    await msg.channel.send({ embeds: [embed] });
 }
 
 exports.helpPage = helpPage;

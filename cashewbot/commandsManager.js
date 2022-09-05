@@ -16,7 +16,7 @@ class Command {
 const prefixCommand = new Command('prefix', async (msg, prefix) => prefixHandler(msg, prefix));
 const searchCommand = new Command('search', async (msg, prefix) => mandarinSearch(msg, prefix));
 const kyujiCommand = new Command('kyuji', async (msg, prefix) => convertKyujitaiShinjitai(msg, prefix));
-const quizCommand = new Command('quiz', async (msg, prefix) => initiateQuiz(msg, prefix));
+// const quizCommand = new Command('quiz', async (msg, prefix) => initiateQuiz(msg, prefix));
 const helpCommand = new Command('help', async (msg, prefix) => helpPage(msg, prefix));
 const aboutCommand = new Command('about', async (msg, prefix) => aboutPage(msg));
 

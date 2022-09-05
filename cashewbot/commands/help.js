@@ -1,4 +1,4 @@
-const helpPageEmbed = require('../commandPages/createHelpPage');
+const helpPageEmbed = require('../commandPages/helpPage');
 
 const helpPage = async function(msg, prefix) {
     const embed = helpPageEmbed.helpPageEmbed(prefix);

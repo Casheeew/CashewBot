@@ -1,4 +1,4 @@
-const { initiateQuiz } = require('./commands/quiz.js')
+// const { initiateQuiz } = require('./commands/quiz.js')
 const { mandarinSearch }  = require('./commands/mandarinSearch.js');
 const { convertKyujitaiShinjitai } = require('./commands/kyujitai.js');
 const { helpPage } = require('./commands/help.js');
@@ -27,9 +27,10 @@ const commands = {
   'kyuji': kyujiCommand.run,
   'h': helpCommand.run,
   'help': helpCommand.run, 
+  'q': quizCommand.run,
+  'quiz': quizCommand.run,
   'about': aboutCommand.run,
-  'prefix': prefixCommand.run,
-  'quiz': quizCommand.run
+  'prefix': prefixCommand.run
 };
 
 const switchBetweenCommands = async msg => {

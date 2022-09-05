@@ -1,4 +1,4 @@
-const { returnLookUpWordEmbed } = require('../commandPages/mandarinSearchPage.js');
+const { returnLookUpWordEmbed } = require('../commandPages/createMandarinSearchPage.js');
 const { EmbedBuilder } = require('discord.js');
 const { processMessage } = require('./commandsHelper.js');
 

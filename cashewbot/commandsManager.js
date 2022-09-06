@@ -21,6 +21,7 @@ const quizCommand = new Command('quiz', async (msg, prefix) => initiateQuiz(msg,
 const helpCommand = new Command('help', async (msg, prefix) => helpPage(msg, prefix));
 const aboutCommand = new Command('about', async (msg, prefix) => aboutPage(msg));
 const convertPinyinCommand = new Command('cvpinyin', async (msg, prefix) => convertAccentedPinyin(msg, prefix));
+const hiCommand = new Command('hi', async msg => msg.channel.send('Hi 蔀'));
 
 const commands = {
   's': searchCommand.run,
@@ -34,6 +35,7 @@ const commands = {
   'about': aboutCommand.run,
   'prefix': prefixCommand.run,
   'cvpinyin': convertPinyinCommand.run,
+  'hi': hiCommand.run
 };
 
 const switchBetweenCommands = async msg => {

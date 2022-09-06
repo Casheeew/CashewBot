@@ -8,7 +8,7 @@ const BASE_RIGHT_PADDING_IN_PIXELS = 6;
 const TOTAL_VERTICAL_PADDING_IN_PIXELS = TOP_PADDING_IN_PIXELS + BOTTOM_PADDING_IN_PIXELS;
 
 const FONT_ALIAS = 'noto';
-const FONT_PATH = './cashewbot/assets/fonts/noto-sans/NotoSansSC/NotoSansSC-Regular.otf';
+const FONT_PATH = './assets/fonts/noto-sans/NotoSansSC/NotoSansSC-Regular.otf';
 
 Canvas.registerFont(FONT_PATH, { family: FONT_ALIAS });
 

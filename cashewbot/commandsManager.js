@@ -42,6 +42,7 @@ const switchBetweenCommands = async msg => {
   const prefixStr = await getPrefixes(msg.guild);
   const prefixList = await prefixStr.split(' ');
 
+  msg.channel.send('no')
   for (const cmdname in commands) {
     for (const prefix of prefixList) {
       if (msg.content.split(' ')[0] == `${await prefix}${cmdname}`) {

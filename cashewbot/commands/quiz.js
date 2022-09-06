@@ -1,76 +1,96 @@
 const { processMessage } = require('./commandsHelper.js');
 const renderText = require('../utils/renderText.js');
-const { AttachmentBuilder, discordSort } = require('discord.js');
+const { AttachmentBuilder } = require('discord.js');
 const { getEmbedForQuiz, correctAnswerEmbed, incorrectAnswerEmbed } = require('../quiz/quizPage.js')
+const { placeTone } = require('../utils/parsePinyin.js')
 
-const processResponse = function(msg) {
-    if (!QuizManager.hasQuizSession(msg.channel.id)) {
-      return false;
-    }
-    const userName = `${msg.author.username}#${msg.author.discriminator}`;
-    const result = QuizManager.processUserInput(
-      msg.channel.id,
-      msg.author.id,
-      userName,
-      msg.content,
-    );
-
-    if (result) {
-      return true;
-    }
-    const msgLowercase = msg.content.toLowerCase();
-    if (msgLowercase === 'skip' || msgLowercase === 's' || msgLowercase === 'ｓ' || msgLowercase === '。' || msgLowercase === '。。') {
-      return QuizManager.skip(msg.channel.id);
-    }
-    const isDm = !msg.channel.guild;
-    if (isDm) {
-      return 'Wrong answer in DM';
-    }
-    return false;
+const processResponse = function(msg) {    
+  const msgLowercase = msg.content.toLowerCase();
+  if (msgLowercase === 'skip' || msgLowercase === 's' || msgLowercase === 'ｓ' || msgLowercase === '。' || msgLowercase === '。。') {
+    return 'skip';
+  }
+  const accentedPinyin = placeTone(msgLowercase);
+  if (!accentedPinyin) {
+    return msgLowercase;
+  } else {
+    return accentedPinyin;
+  }
 }
 
 const getGenerator = function* (list) {
-    for (let idx = 0; idx < list.length; idx += 1) {
-        yield list[idx];
-    }
+  for (let idx = 0; idx < list.length; idx += 1) {
+    yield list[idx];
+  }
 }
 const initiateQuiz = async function (msg) {
-    var deck = require('../assets/2k.json');
-    var cards = deck.cards;
-    var embeds = getEmbedForQuiz(deck);
-    const cardGenerator = getGenerator(cards);
-    while (true) {
-        var nextCard = await cardGenerator.next();
-        if (nextCard.done) break;
-
-        var card = nextCard.value;
-
-        const filter = msg => !msg.author.bot;
-        const collector = msg.channel.createMessageCollector({ filter, idle: 6000 });
-        const question = new AttachmentBuilder(renderText.render(card.question), {name: 'question.png'})
-        msg.channel.send({embeds: [embeds.cardEmbed.setImage('attachment://question.png')], files: [question]});
-        const waitForCorrectAnswer = new Promise(
-          (resolve, reject) => collector.on('collect', async m => {
-              if (card.answer.some(ans => ans === m.content)) {
-                  var embed = correctAnswerEmbed(card, m.author, null || 10); // scoreLimit
-                  collector.channel.send({embeds: [embed]});
-                  resolve(m.author.id);
-                  collector.stop();
-              } 
-          })
+  chosenDeck = processMessage(msg).value;
+  if (chosenDeck) {
+    var deck = require(`../assets/quiz_json/${chosenDeck}.json`);
+  } else {
+    msg.channel.send('Please choose a deck: hsk1, hsk2, hsk3, hsk4, hsk5, hsk6')
+    return;
+  }
+  const pointsRack = {}
+  const buffer = 200
+  const timer = 10000 + buffer
+  const cards = deck.cards;
+  const embeds = getEmbedForQuiz(deck);
+  const cardGenerator = getGenerator(cards);
+  while (true) {
+    var nextCard = cardGenerator.next();
+    if (nextCard.done) break;
+    
+    var card = nextCard.value;
+    
+    const filter = msg => {
+      if (msg.author.bot) return false;
+      return true;
+    }
+    const collector = msg.channel.createMessageCollector({ filter });
+    const question = new AttachmentBuilder(renderText.render(card.question), {name: 'question.png'})
+    msg.channel.send({embeds: [embeds.cardEmbed.setImage('attachment://question.png')], files: [question]});
+    
+    
+    const waitForCorrectAnswer = new Promise(
+      (resolve) => collector.on('collect', m => {
+        res = processResponse(m);
+        userid = m.author.id;
+        if (res === 'skip') resolve({scorers: [], embed: incorrectAnswerEmbed(card, skip=true, null || 10, userid)}) 
+        if (card.answer.some(ans => res === ans)) {
+          var embed = correctAnswerEmbed(card, m.author, null || 10); // scoreLimit
+          resolve({scorers: [m.author.id], embed});
+          collector.stop();
+        } 
+      })
+      )
+      
+      const waitForTimeout = new Promise(
+        (resolve) => {
+          setTimeout(() => {
+            var embed = incorrectAnswerEmbed(card, skip=false, null || 10); // scoreLimit
+            resolve({scorers: [], embed})
+          },
+          timer
+          )
+        }
         );
         
-        const waitForCollectorEnd = new Promise(
-          (resolve, reject) => collector.on('end', collected => {
-            var embed = incorrectAnswerEmbed(card, null || 10); // scoreLimit
-            collector.channel.send({embeds: [embed]});
-            resolve()
-          })
-        );
-        const result = await Promise.race([waitForCorrectAnswer, waitForCollectorEnd]);
-        console.log(result)
+        await Promise.race([waitForCorrectAnswer, waitForTimeout]).then((result) => {
+          for (scorer of result.scorers) {
+            if (pointsRack[scorer]) {
+              pointsRack[scorer] += 1;
+              if (pointsRack[scorer] == 10) {
+                msg.channel.send(`<@${scorer}> got 10 points!`)
+                break;
+              }
+            } else {
+              pointsRack[scorer] = 1;
+            }
+          }
+          collector.channel.send({embeds: [result.embed]})
+        });
+      }
     }
-}
-
+    
 exports.initiateQuiz = initiateQuiz
 

@@ -1,0 +1,2065 @@
+{
+    "uniqueId": "hsk2",
+    "name": "HSK2",
+    "instructions": "Type the reading!",
+    "description": "HSK2 vocabulary quiz",
+    "cards": [
+        {
+            "id": 151,
+            "question": "吧",
+            "answer": [
+                "ba"
+            ],
+            "meaning": [
+                "(modal particle indicating suggestion or surmise)",
+                "...right?",
+                "...OK?",
+                "...I presume."
+            ]
+        },
+        {
+            "id": 152,
+            "question": "白",
+            "answer": [
+                "bái"
+            ],
+            "meaning": [
+                "white",
+                "snowy",
+                "pure",
+                "bright",
+                "empty",
+                "blank",
+                "plain",
+                "clear",
+                "to make clear",
+                "in vain",
+                "gratuitous",
+                "free of charge",
+                "reactionary",
+                "anti-communist",
+                "funeral",
+                "to stare coldly",
+                "to write wrong character",
+                "to state",
+                "to explain",
+                "vernacular",
+                "spoken lines in opera"
+            ]
+        },
+        {
+            "id": 153,
+            "question": "百",
+            "answer": [
+                "bǎi"
+            ],
+            "meaning": [
+                "hundred",
+                "numerous",
+                "all kinds of"
+            ]
+        },
+        {
+            "id": 154,
+            "question": "帮助",
+            "answer": [
+                "bāng zhù"
+            ],
+            "meaning": [
+                "assistance",
+                "aid",
+                "to help",
+                "to assist"
+            ]
+        },
+        {
+            "id": 155,
+            "question": "报纸",
+            "answer": [
+                "bào zhǐ"
+            ],
+            "meaning": [
+                "newspaper",
+                "newsprint",
+                "CL:份",
+                "期",
+                "張|张[zhāng]"
+            ]
+        },
+        {
+            "id": 156,
+            "question": "比",
+            "answer": [
+                "bǐ"
+            ],
+            "meaning": [
+                "(particle used for comparison and \"-er than\")",
+                "to compare",
+                "to contrast",
+                "to gesture (with hands)",
+                "ratio"
+            ]
+        },
+        {
+            "id": 157,
+            "question": "别",
+            "answer": [
+                "bié"
+            ],
+            "meaning": [
+                "to leave",
+                "to depart",
+                "to separate",
+                "to distinguish",
+                "to classify",
+                "other",
+                "another",
+                "do not",
+                "must not",
+                "to pin"
+            ]
+        },
+        {
+            "id": 158,
+            "question": "长",
+            "answer": [
+                "cháng"
+            ],
+            "meaning": [
+                "length",
+                "long",
+                "forever",
+                "always",
+                "constantly"
+            ]
+        },
+        {
+            "id": 159,
+            "question": "唱歌",
+            "answer": [
+                "chàng gē"
+            ],
+            "meaning": [
+                "to sing a song"
+            ]
+        },
+        {
+            "id": 160,
+            "question": "出",
+            "answer": [
+                "chū"
+            ],
+            "meaning": [
+                "to go out",
+                "to come out",
+                "to occur",
+                "to produce",
+                "to go beyond",
+                "to rise",
+                "to put forth",
+                "to happen",
+                "classifier for dramas",
+                "plays",
+                "operas etc"
+            ]
+        },
+        {
+            "id": 161,
+            "question": "穿",
+            "answer": [
+                "chuān"
+            ],
+            "meaning": [
+                "to bore through",
+                "to pierce",
+                "to perforate",
+                "to penetrate",
+                "to pass through",
+                "to dress",
+                "to wear",
+                "to put on",
+                "to thread"
+            ]
+        },
+        {
+            "id": 162,
+            "question": "船",
+            "answer": [
+                "chuán"
+            ],
+            "meaning": [
+                "a boat",
+                "vessel",
+                "ship",
+                "CL:條|条",
+                "艘",
+                "隻|只[zhī]"
+            ]
+        },
+        {
+            "id": 163,
+            "question": "次",
+            "answer": [
+                "cì"
+            ],
+            "meaning": [
+                "next in sequence",
+                "second",
+                "the second (day, time etc)",
+                "secondary",
+                "vice-",
+                "sub-",
+                "infra-",
+                "inferior quality",
+                "substandard",
+                "order",
+                "sequence",
+                "hypo- (chemistry)",
+                "classifier for enumerated events: time"
+            ]
+        },
+        {
+            "id": 164,
+            "question": "从",
+            "answer": [
+                "cóng"
+            ],
+            "meaning": [
+                "from",
+                "via",
+                "passing through",
+                "through (a gap)",
+                "past",
+                "ever (followed by negative, meaning never)",
+                "(formerly pr.  and related to 縱|纵) to follow",
+                "to comply with",
+                "to obey",
+                "to join",
+                "to engage in",
+                "adopting some mode of action or attitude",
+                "follower",
+                "retainer",
+                "accessory",
+                "accomplice",
+                "related by common paternal grandfather or earlier ancestor"
+            ]
+        },
+        {
+            "id": 165,
+            "question": "错",
+            "answer": [
+                "cuò"
+            ],
+            "meaning": [
+                "mistake",
+                "wrong",
+                "bad",
+                "interlocking",
+                "complex",
+                "to grind",
+                "to polish",
+                "to alternate",
+                "to stagger",
+                "to miss",
+                "to let slip",
+                "to evade",
+                "to inlay with gold or silver"
+            ]
+        },
+        {
+            "id": 166,
+            "question": "打篮球",
+            "answer": [
+                "dá lán qiú"
+            ],
+            "meaning": [
+                "Play basketball"
+            ]
+        },
+        {
+            "id": 167,
+            "question": "大家",
+            "answer": [
+                "dà jiā"
+            ],
+            "meaning": [
+                "everyone",
+                "influential family",
+                "great expert"
+            ]
+        },
+        {
+            "id": 168,
+            "question": "但是",
+            "answer": [
+                "dàn shì"
+            ],
+            "meaning": [
+                "but",
+                "however"
+            ]
+        },
+        {
+            "id": 169,
+            "question": "到",
+            "answer": [
+                "dào"
+            ],
+            "meaning": [
+                "to (a place)",
+                "until (a time)",
+                "up to",
+                "to go",
+                "to arrive"
+            ]
+        },
+        {
+            "id": 170,
+            "question": "得",
+            "answer": [
+                "de"
+            ],
+            "meaning": [
+                "structural particle: used after a verb (or adjective as main verb)",
+                "linking it to following phrase indicating effect",
+                "degree",
+                "possibility etc"
+            ]
+        },
+        {
+            "id": 171,
+            "question": "得",
+            "answer": [
+                "děi"
+            ],
+            "meaning": [
+                "to have to",
+                "must",
+                "ought to",
+                "to need to"
+            ]
+        },
+        {
+            "id": 172,
+            "question": "弟弟",
+            "answer": [
+                "dì di"
+            ],
+            "meaning": [
+                "younger brother",
+                "CL:個|个",
+                "位[wèi]"
+            ]
+        },
+        {
+            "id": 173,
+            "question": "第一",
+            "answer": [
+                "dì yī"
+            ],
+            "meaning": [
+                "first",
+                "number one"
+            ]
+        },
+        {
+            "id": 174,
+            "question": "懂",
+            "answer": [
+                "dǒng"
+            ],
+            "meaning": [
+                "to understand",
+                "to know"
+            ]
+        },
+        {
+            "id": 175,
+            "question": "房间",
+            "answer": [
+                "fáng jiān"
+            ],
+            "meaning": [
+                "room",
+                "CL:間|间[jiān]"
+            ]
+        },
+        {
+            "id": 176,
+            "question": "非常",
+            "answer": [
+                "fēi cháng"
+            ],
+            "meaning": [
+                "unusual",
+                "extraordinary",
+                "extreme",
+                "very",
+                "exceptional"
+            ]
+        },
+        {
+            "id": 177,
+            "question": "服务员",
+            "answer": [
+                "fú wù yuán"
+            ],
+            "meaning": [
+                "waiter",
+                "waitress",
+                "attendant",
+                "customer service personnel",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 178,
+            "question": "高",
+            "answer": [
+                "gāo"
+            ],
+            "meaning": [
+                "high",
+                "tall",
+                "above average",
+                "loud",
+                "your (honorific)"
+            ]
+        },
+        {
+            "id": 179,
+            "question": "告诉",
+            "answer": [
+                "gào su"
+            ],
+            "meaning": [
+                "to tell",
+                "to inform",
+                "to let know"
+            ]
+        },
+        {
+            "id": 180,
+            "question": "哥哥",
+            "answer": [
+                "gē ge"
+            ],
+            "meaning": [
+                "older brother",
+                "CL:個|个",
+                "位[wèi]"
+            ]
+        },
+        {
+            "id": 181,
+            "question": "给",
+            "answer": [
+                "gěi"
+            ],
+            "meaning": [
+                "to",
+                "for",
+                "for the benefit of",
+                "to give",
+                "to allow",
+                "to do sth (for sb)",
+                "(passive particle)"
+            ]
+        },
+        {
+            "id": 182,
+            "question": "公共汽车",
+            "answer": [
+                "gōng gòng qì chē"
+            ],
+            "meaning": [
+                "bus",
+                "CL:輛|辆",
+                "班[bān]"
+            ]
+        },
+        {
+            "id": 183,
+            "question": "公斤",
+            "answer": [
+                "gōng jīn"
+            ],
+            "meaning": [
+                "kilogram (kg)"
+            ]
+        },
+        {
+            "id": 184,
+            "question": "公司",
+            "answer": [
+                "gōng sī"
+            ],
+            "meaning": [
+                "(business) company",
+                "company",
+                "firm",
+                "corporation",
+                "incorporated",
+                "CL:家[jiā]"
+            ]
+        },
+        {
+            "id": 185,
+            "question": "贵",
+            "answer": [
+                "guì"
+            ],
+            "meaning": [
+                "expensive",
+                "noble",
+                "your (name)",
+                "precious"
+            ]
+        },
+        {
+            "id": 186,
+            "question": "还",
+            "answer": [
+                "hái"
+            ],
+            "meaning": [
+                "still",
+                "still in progress",
+                "still more",
+                "yet",
+                "even more",
+                "in addition",
+                "fairly",
+                "passably (good)",
+                "as early as",
+                "even",
+                "also",
+                "else"
+            ]
+        },
+        {
+            "id": 187,
+            "question": "孩子",
+            "answer": [
+                "hái zi"
+            ],
+            "meaning": [
+                "child"
+            ]
+        },
+        {
+            "id": 188,
+            "question": "好吃",
+            "answer": [
+                "hǎo chī"
+            ],
+            "meaning": [
+                "tasty",
+                "delicious"
+            ]
+        },
+        {
+            "id": 189,
+            "question": "号",
+            "answer": [
+                "hào"
+            ],
+            "meaning": [
+                "ordinal number",
+                "day of a month",
+                "mark",
+                "sign",
+                "business establishment",
+                "size",
+                "ship suffix",
+                "horn (wind instrument)",
+                "bugle call",
+                "assumed name",
+                "to take a pulse",
+                "classifier used to indicate number of people"
+            ]
+        },
+        {
+            "id": 190,
+            "question": "黑",
+            "answer": [
+                "hēi"
+            ],
+            "meaning": [
+                "black",
+                "dark",
+                "(loanword) to hack"
+            ]
+        },
+        {
+            "id": 191,
+            "question": "红",
+            "answer": [
+                "hóng"
+            ],
+            "meaning": [
+                "red",
+                "popular",
+                "revolutionary",
+                "bonus"
+            ]
+        },
+        {
+            "id": 192,
+            "question": "欢迎",
+            "answer": [
+                "huān yíng"
+            ],
+            "meaning": [
+                "to welcome",
+                "welcome"
+            ]
+        },
+        {
+            "id": 193,
+            "question": "还",
+            "answer": [
+                "huán"
+            ],
+            "meaning": [
+                "to pay back",
+                "to return"
+            ]
+        },
+        {
+            "id": 194,
+            "question": "回答",
+            "answer": [
+                "huí dá"
+            ],
+            "meaning": [
+                "to reply",
+                "to answer",
+                "the answer",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 195,
+            "question": "机场",
+            "answer": [
+                "jī chǎng"
+            ],
+            "meaning": [
+                "airport",
+                "airfield",
+                "CL:家",
+                "處|处[chù]"
+            ]
+        },
+        {
+            "id": 196,
+            "question": "鸡蛋",
+            "answer": [
+                "jī dàn"
+            ],
+            "meaning": [
+                "(chicken) egg",
+                "hen's egg",
+                "CL:個|个",
+                "打[dá]"
+            ]
+        },
+        {
+            "id": 197,
+            "question": "件",
+            "answer": [
+                "jiàn"
+            ],
+            "meaning": [
+                "item",
+                "component",
+                "classifier for events",
+                "things",
+                "clothes etc"
+            ]
+        },
+        {
+            "id": 198,
+            "question": "教室",
+            "answer": [
+                "jiào shì"
+            ],
+            "meaning": [
+                "classroom",
+                "CL:間|间[jiān]"
+            ]
+        },
+        {
+            "id": 199,
+            "question": "姐姐",
+            "answer": [
+                "jiě jie"
+            ],
+            "meaning": [
+                "older sister",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 200,
+            "question": "介绍",
+            "answer": [
+                "jiè shào"
+            ],
+            "meaning": [
+                "to introduce (sb to sb)",
+                "to give a presentation",
+                "to present (sb for a job etc)",
+                "introduction"
+            ]
+        },
+        {
+            "id": 201,
+            "question": "进",
+            "answer": [
+                "jìn"
+            ],
+            "meaning": [
+                "to advance",
+                "to enter",
+                "to come (or go) into",
+                "to receive or admit",
+                "to eat or drink",
+                "to submit or present",
+                "(used after a verb) into",
+                "in",
+                "to score a goal"
+            ]
+        },
+        {
+            "id": 202,
+            "question": "近",
+            "answer": [
+                "jìn"
+            ],
+            "meaning": [
+                "near",
+                "close to",
+                "approximately"
+            ]
+        },
+        {
+            "id": 203,
+            "question": "就",
+            "answer": [
+                "jiù"
+            ],
+            "meaning": [
+                "at once",
+                "right away",
+                "only",
+                "just (emphasis)",
+                "as early as",
+                "already",
+                "as soon as",
+                "then",
+                "in that case",
+                "as many as",
+                "even if",
+                "to approach",
+                "to move towards",
+                "to undertake",
+                "to engage in",
+                "to suffer",
+                "subjected to",
+                "to accomplish",
+                "to take advantage of",
+                "to go with (of foods)",
+                "with regard to",
+                "concerning"
+            ]
+        },
+        {
+            "id": 204,
+            "question": "觉得",
+            "answer": [
+                "jué de"
+            ],
+            "meaning": [
+                "to think",
+                "to feel"
+            ]
+        },
+        {
+            "id": 205,
+            "question": "咖啡",
+            "answer": [
+                "kā fēi"
+            ],
+            "meaning": [
+                "coffee",
+                "CL:杯[bēi]"
+            ]
+        },
+        {
+            "id": 206,
+            "question": "开始",
+            "answer": [
+                "kāi shǐ"
+            ],
+            "meaning": [
+                "to begin",
+                "beginning",
+                "to start",
+                "initial",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 207,
+            "question": "考试",
+            "answer": [
+                "kǎo shì"
+            ],
+            "meaning": [
+                "to take an exam",
+                "exam",
+                "CL:次[cì]"
+            ]
+        },
+        {
+            "id": 208,
+            "question": "可能",
+            "answer": [
+                "kě néng"
+            ],
+            "meaning": [
+                "might (happen)",
+                "possible",
+                "probable",
+                "possibility",
+                "probability",
+                "maybe",
+                "perhaps",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 209,
+            "question": "可以",
+            "answer": [
+                "kě yǐ"
+            ],
+            "meaning": [
+                "can",
+                "may",
+                "possible",
+                "able to"
+            ]
+        },
+        {
+            "id": 210,
+            "question": "课",
+            "answer": [
+                "kè"
+            ],
+            "meaning": [
+                "subject",
+                "course",
+                "CL: 門|门[mén]",
+                "class",
+                "lesson",
+                "CL:堂",
+                "節|节[jié]",
+                "to levy",
+                "tax",
+                "form of divination"
+            ]
+        },
+        {
+            "id": 211,
+            "question": "快",
+            "answer": [
+                "kuài"
+            ],
+            "meaning": [
+                "rapid",
+                "quick",
+                "speed",
+                "rate",
+                "soon",
+                "almost",
+                "to make haste",
+                "clever",
+                "sharp (of knives or wits)",
+                "forthright",
+                "plain-spoken",
+                "gratified",
+                "pleased",
+                "pleasant"
+            ]
+        },
+        {
+            "id": 212,
+            "question": "快乐",
+            "answer": [
+                "kuài lè"
+            ],
+            "meaning": [
+                "happy",
+                "merry"
+            ]
+        },
+        {
+            "id": 213,
+            "question": "累",
+            "answer": [
+                "lèi"
+            ],
+            "meaning": [
+                "tired",
+                "weary",
+                "to strain",
+                "to wear out",
+                "to work hard"
+            ]
+        },
+        {
+            "id": 214,
+            "question": "离",
+            "answer": [
+                "lí"
+            ],
+            "meaning": [
+                "to leave",
+                "to part from",
+                "to be away from",
+                "(in giving distances) from",
+                "without (sth)",
+                "independent of",
+                "one of the Eight Trigrams 八卦",
+                "symbolizing fire",
+                "☲"
+            ]
+        },
+        {
+            "id": 215,
+            "question": "两",
+            "answer": [
+                "liǎng"
+            ],
+            "meaning": [
+                "both",
+                "two",
+                "ounce",
+                "some",
+                "a few",
+                "tael",
+                "weight equal to 50 grams"
+            ]
+        },
+        {
+            "id": 216,
+            "question": "路",
+            "answer": [
+                "lù"
+            ],
+            "meaning": [
+                "road",
+                "CL:條|条[tiáo]",
+                "journey",
+                "route",
+                "line (bus etc)",
+                "sort",
+                "kind"
+            ]
+        },
+        {
+            "id": 217,
+            "question": "旅游",
+            "answer": [
+                "lǚ yóu"
+            ],
+            "meaning": [
+                "trip",
+                "journey",
+                "tourism",
+                "travel",
+                "tour"
+            ]
+        },
+        {
+            "id": 218,
+            "question": "卖",
+            "answer": [
+                "mài"
+            ],
+            "meaning": [
+                "to sell",
+                "to betray",
+                "to spare no effort",
+                "to show off or flaunt"
+            ]
+        },
+        {
+            "id": 219,
+            "question": "慢",
+            "answer": [
+                "màn"
+            ],
+            "meaning": [
+                "slow"
+            ]
+        },
+        {
+            "id": 220,
+            "question": "忙",
+            "answer": [
+                "máng"
+            ],
+            "meaning": [
+                "busy",
+                "hurriedly",
+                "to hurry",
+                "to rush"
+            ]
+        },
+        {
+            "id": 221,
+            "question": "每",
+            "answer": [
+                "měi"
+            ],
+            "meaning": [
+                "each",
+                "every"
+            ]
+        },
+        {
+            "id": 222,
+            "question": "妹妹",
+            "answer": [
+                "mèi mei"
+            ],
+            "meaning": [
+                "younger sister",
+                "fig. younger woman (esp. girl friend or rival)",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 223,
+            "question": "门",
+            "answer": [
+                "mén"
+            ],
+            "meaning": [
+                "gate",
+                "door",
+                "CL:扇[shàn]",
+                "gateway",
+                "doorway",
+                "CL:個|个[gè]",
+                "opening",
+                "valve",
+                "switch",
+                "way to do something",
+                "knack",
+                "family",
+                "house",
+                "(religious) sect",
+                "school (of thought)",
+                "class",
+                "category",
+                "phylum or division (taxonomy)",
+                "classifier for large guns",
+                "classifier for lessons",
+                "subjects",
+                "branches of technology"
+            ]
+        },
+        {
+            "id": 224,
+            "question": "男人",
+            "answer": [
+                "nán rén"
+            ],
+            "meaning": [
+                "a man",
+                "a male",
+                "men",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 225,
+            "question": "您",
+            "answer": [
+                "nín"
+            ],
+            "meaning": [
+                "you (courteous, as opposed to informal 你)"
+            ]
+        },
+        {
+            "id": 226,
+            "question": "牛奶",
+            "answer": [
+                "niú nǎi"
+            ],
+            "meaning": [
+                "cow's milk",
+                "CL:瓶",
+                "杯[bēi]"
+            ]
+        },
+        {
+            "id": 227,
+            "question": "女人",
+            "answer": [
+                "nǚ rén"
+            ],
+            "meaning": [
+                "woman"
+            ]
+        },
+        {
+            "id": 228,
+            "question": "旁边",
+            "answer": [
+                "páng biān"
+            ],
+            "meaning": [
+                "lateral",
+                "side",
+                "to the side",
+                "beside"
+            ]
+        },
+        {
+            "id": 229,
+            "question": "跑步",
+            "answer": [
+                "pǎo bù"
+            ],
+            "meaning": [
+                "to walk quickly",
+                "to march",
+                "to run"
+            ]
+        },
+        {
+            "id": 230,
+            "question": "便宜",
+            "answer": [
+                "pián yi"
+            ],
+            "meaning": [
+                "small advantages",
+                "to let sb off lightly",
+                "cheap",
+                "inexpensive"
+            ]
+        },
+        {
+            "id": 231,
+            "question": "票",
+            "answer": [
+                "piào"
+            ],
+            "meaning": [
+                "ticket",
+                "ballot",
+                "bank note",
+                "CL:張|张[zhāng]",
+                "person held for ransom",
+                "amateur performance of Chinese opera",
+                "classifier for shipments and business transactions (topolect)"
+            ]
+        },
+        {
+            "id": 232,
+            "question": "妻子",
+            "answer": [
+                "qī zi"
+            ],
+            "meaning": [
+                "wife",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 233,
+            "question": "起床",
+            "answer": [
+                "qǐ chuáng"
+            ],
+            "meaning": [
+                "to get out of bed",
+                "to get up"
+            ]
+        },
+        {
+            "id": 234,
+            "question": "千",
+            "answer": [
+                "qiān"
+            ],
+            "meaning": [
+                "a swing"
+            ]
+        },
+        {
+            "id": 235,
+            "question": "晴",
+            "answer": [
+                "qíng"
+            ],
+            "meaning": [
+                "clear",
+                "fine (weather)"
+            ]
+        },
+        {
+            "id": 236,
+            "question": "去年",
+            "answer": [
+                "qù nián"
+            ],
+            "meaning": [
+                "last year"
+            ]
+        },
+        {
+            "id": 237,
+            "question": "让",
+            "answer": [
+                "ràng"
+            ],
+            "meaning": [
+                "to yield",
+                "to permit",
+                "to let sb do sth",
+                "to have sb do sth"
+            ]
+        },
+        {
+            "id": 238,
+            "question": "上班",
+            "answer": [
+                "shàng bān"
+            ],
+            "meaning": [
+                "to go to work",
+                "to be on duty",
+                "to start work",
+                "to go to the office"
+            ]
+        },
+        {
+            "id": 239,
+            "question": "身体",
+            "answer": [
+                "shēn tǐ"
+            ],
+            "meaning": [
+                "(human) body",
+                "health",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 240,
+            "question": "生病",
+            "answer": [
+                "shēng bìng"
+            ],
+            "meaning": [
+                "to fall ill"
+            ]
+        },
+        {
+            "id": 241,
+            "question": "生日",
+            "answer": [
+                "shēng rì"
+            ],
+            "meaning": [
+                "birthday",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 242,
+            "question": "时间",
+            "answer": [
+                "shí jiān"
+            ],
+            "meaning": [
+                "time",
+                "period",
+                "CL:段[duàn]"
+            ]
+        },
+        {
+            "id": 243,
+            "question": "事情",
+            "answer": [
+                "shì qing"
+            ],
+            "meaning": [
+                "affair",
+                "matter",
+                "thing",
+                "business",
+                "CL:件",
+                "樁|桩[zhuāng]"
+            ]
+        },
+        {
+            "id": 244,
+            "question": "手表",
+            "answer": [
+                "shǒu biǎo"
+            ],
+            "meaning": [
+                "wrist watch",
+                "CL:塊|块",
+                "隻|只",
+                "個|个[gè]"
+            ]
+        },
+        {
+            "id": 245,
+            "question": "手机",
+            "answer": [
+                "shǒu jī"
+            ],
+            "meaning": [
+                "cell phone",
+                "mobile phone",
+                "CL:部",
+                "支[zhī]"
+            ]
+        },
+        {
+            "id": 246,
+            "question": "送",
+            "answer": [
+                "sòng"
+            ],
+            "meaning": [
+                "to deliver",
+                "to carry",
+                "to give (as a present)",
+                "to present (with)",
+                "to see off",
+                "to send"
+            ]
+        },
+        {
+            "id": 247,
+            "question": "所以",
+            "answer": [
+                "suǒ yǐ"
+            ],
+            "meaning": [
+                "therefore",
+                "as a result",
+                "so"
+            ]
+        },
+        {
+            "id": 248,
+            "question": "它",
+            "answer": [
+                "tā"
+            ],
+            "meaning": [
+                "it"
+            ]
+        },
+        {
+            "id": 249,
+            "question": "踢",
+            "answer": [
+                "tī"
+            ],
+            "meaning": [
+                "to kick",
+                "to play (e.g. soccer)"
+            ]
+        },
+        {
+            "id": 250,
+            "question": "题",
+            "answer": [
+                "tí"
+            ],
+            "meaning": [
+                "topic",
+                "problem for discussion",
+                "exam question",
+                "subject",
+                "to inscribe",
+                "to mention",
+                "CL:個|个",
+                "道[dào]"
+            ]
+        },
+        {
+            "id": 251,
+            "question": "跳舞",
+            "answer": [
+                "tiào wǔ"
+            ],
+            "meaning": [
+                "to dance"
+            ]
+        },
+        {
+            "id": 252,
+            "question": "外",
+            "answer": [
+                "wài"
+            ],
+            "meaning": [
+                "outside",
+                "in addition",
+                "foreign",
+                "external"
+            ]
+        },
+        {
+            "id": 253,
+            "question": "完",
+            "answer": [
+                "wán"
+            ],
+            "meaning": [
+                "to finish",
+                "to be over",
+                "whole",
+                "complete",
+                "entire"
+            ]
+        },
+        {
+            "id": 254,
+            "question": "玩",
+            "answer": [
+                "wán"
+            ],
+            "meaning": [
+                "toy",
+                "sth used for amusement",
+                "curio or antique (Taiwan pr. )",
+                "to play",
+                "to have fun",
+                "to trifle with",
+                "to keep sth for entertainment"
+            ]
+        },
+        {
+            "id": 255,
+            "question": "晚上",
+            "answer": [
+                "wǎn shang"
+            ],
+            "meaning": [
+                "evening",
+                "night",
+                "CL:個|个[gè]",
+                "in the evening"
+            ]
+        },
+        {
+            "id": 256,
+            "question": "为",
+            "answer": [
+                "wèi"
+            ],
+            "meaning": [
+                "variant of 為|为",
+                "because of",
+                "for",
+                "to"
+            ]
+        },
+        {
+            "id": 257,
+            "question": "问",
+            "answer": [
+                "wèn"
+            ],
+            "meaning": [
+                "to ask"
+            ]
+        },
+        {
+            "id": 258,
+            "question": "问题",
+            "answer": [
+                "wèn tí"
+            ],
+            "meaning": [
+                "question",
+                "problem",
+                "issue",
+                "topic",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 259,
+            "question": "西瓜",
+            "answer": [
+                "xī guā"
+            ],
+            "meaning": [
+                "watermelon",
+                "CL:條|条[tiáo]"
+            ]
+        },
+        {
+            "id": 260,
+            "question": "希望",
+            "answer": [
+                "xī wàng"
+            ],
+            "meaning": [
+                "to wish for",
+                "to desire",
+                "hope CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 261,
+            "question": "洗",
+            "answer": [
+                "xǐ"
+            ],
+            "meaning": [
+                "to wash",
+                "to bathe",
+                "to develop (photo)"
+            ]
+        },
+        {
+            "id": 262,
+            "question": "向",
+            "answer": [
+                "xiàng"
+            ],
+            "meaning": [
+                "towards",
+                "to face",
+                "to turn towards",
+                "direction",
+                "to support",
+                "to side with",
+                "shortly before",
+                "formerly",
+                "always",
+                "all along"
+            ]
+        },
+        {
+            "id": 263,
+            "question": "小时",
+            "answer": [
+                "xiǎo shí"
+            ],
+            "meaning": [
+                "hour",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 264,
+            "question": "笑",
+            "answer": [
+                "xiào"
+            ],
+            "meaning": [
+                "laugh",
+                "smile",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 265,
+            "question": "新",
+            "answer": [
+                "xīn"
+            ],
+            "meaning": [
+                "new",
+                "newly",
+                "meso- (chemistry)"
+            ]
+        },
+        {
+            "id": 266,
+            "question": "姓",
+            "answer": [
+                "xìng"
+            ],
+            "meaning": [
+                "family name",
+                "surname",
+                "name",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 267,
+            "question": "休息",
+            "answer": [
+                "xiū xi"
+            ],
+            "meaning": [
+                "rest",
+                "to rest"
+            ]
+        },
+        {
+            "id": 268,
+            "question": "雪",
+            "answer": [
+                "xuě"
+            ],
+            "meaning": [
+                "snow",
+                "snowfall",
+                "CL:場|场[cháng]",
+                "to have the appearance of snow",
+                "to wipe away",
+                "off or out",
+                "to clean"
+            ]
+        },
+        {
+            "id": 269,
+            "question": "颜色",
+            "answer": [
+                "yán sè"
+            ],
+            "meaning": [
+                "color",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 270,
+            "question": "眼睛",
+            "answer": [
+                "yǎn jing"
+            ],
+            "meaning": [
+                "eye",
+                "CL:隻|只",
+                "雙|双[shuāng]"
+            ]
+        },
+        {
+            "id": 271,
+            "question": "羊肉",
+            "answer": [
+                "yáng ròu"
+            ],
+            "meaning": [
+                "mutton"
+            ]
+        },
+        {
+            "id": 272,
+            "question": "药",
+            "answer": [
+                "yào"
+            ],
+            "meaning": [
+                "medicine",
+                "drug",
+                "cure",
+                "CL:種|种",
+                "服[fù]"
+            ]
+        },
+        {
+            "id": 273,
+            "question": "要",
+            "answer": [
+                "yào"
+            ],
+            "meaning": [
+                "important",
+                "vital",
+                "to want",
+                "will",
+                "going to (as future auxiliary)",
+                "may",
+                "must",
+                "(used in a comparison) must be",
+                "probably"
+            ]
+        },
+        {
+            "id": 274,
+            "question": "也",
+            "answer": [
+                "yě"
+            ],
+            "meaning": [
+                "also",
+                "too",
+                "(in Classical Chinese) final particle implying affirmation"
+            ]
+        },
+        {
+            "id": 275,
+            "question": "已经",
+            "answer": [
+                "yǐ jīng"
+            ],
+            "meaning": [
+                "already"
+            ]
+        },
+        {
+            "id": 276,
+            "question": "一起",
+            "answer": [
+                "yī qǐ"
+            ],
+            "meaning": [
+                "in the same place",
+                "together",
+                "with",
+                "altogether (in total)"
+            ]
+        },
+        {
+            "id": 277,
+            "question": "意思",
+            "answer": [
+                "yì si"
+            ],
+            "meaning": [
+                "idea",
+                "opinion",
+                "meaning",
+                "wish",
+                "desire",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 278,
+            "question": "阴",
+            "answer": [
+                "yīn"
+            ],
+            "meaning": [
+                "overcast (weather)",
+                "cloudy",
+                "shady",
+                "Yin (the negative principle of Yin and Yang)",
+                "negative (electric.)",
+                "feminine",
+                "moon",
+                "implicit",
+                "hidden",
+                "genitalia"
+            ]
+        },
+        {
+            "id": 279,
+            "question": "因为",
+            "answer": [
+                "yīn wèi"
+            ],
+            "meaning": [
+                "because",
+                "owing to",
+                "on account of"
+            ]
+        },
+        {
+            "id": 280,
+            "question": "游泳",
+            "answer": [
+                "yóu yǒng"
+            ],
+            "meaning": [
+                "swimming",
+                "to swim"
+            ]
+        },
+        {
+            "id": 281,
+            "question": "右边",
+            "answer": [
+                "yòu bian"
+            ],
+            "meaning": [
+                "right side",
+                "right",
+                "to the right"
+            ]
+        },
+        {
+            "id": 282,
+            "question": "鱼",
+            "answer": [
+                "yú"
+            ],
+            "meaning": [
+                "fish",
+                "CL:條|条",
+                "尾[wěi]"
+            ]
+        },
+        {
+            "id": 283,
+            "question": "元",
+            "answer": [
+                "yuán"
+            ],
+            "meaning": [
+                "Chinese monetary unit",
+                "dollar",
+                "primary",
+                "first"
+            ]
+        },
+        {
+            "id": 284,
+            "question": "远",
+            "answer": [
+                "yuǎn"
+            ],
+            "meaning": [
+                "far",
+                "distant",
+                "remote"
+            ]
+        },
+        {
+            "id": 285,
+            "question": "运动",
+            "answer": [
+                "yùn dòng"
+            ],
+            "meaning": [
+                "to move",
+                "to exercise",
+                "sports",
+                "exercise",
+                "motion",
+                "movement",
+                "campaign",
+                "CL:場|场[chǎng]"
+            ]
+        },
+        {
+            "id": 286,
+            "question": "再",
+            "answer": [
+                "zài"
+            ],
+            "meaning": [
+                "again",
+                "once more",
+                "re-",
+                "second",
+                "another",
+                "then (after sth, and not until then)"
+            ]
+        },
+        {
+            "id": 287,
+            "question": "早上",
+            "answer": [
+                "zǎo shang"
+            ],
+            "meaning": [
+                "early morning",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 288,
+            "question": "张",
+            "answer": [
+                "zhāng"
+            ],
+            "meaning": [
+                "to open up",
+                "to spread",
+                "sheet of paper",
+                "classifier for flat objects",
+                "sheet",
+                "classifier for votes"
+            ]
+        },
+        {
+            "id": 289,
+            "question": "长",
+            "answer": [
+                "zhǎng"
+            ],
+            "meaning": [
+                "chief",
+                "head",
+                "elder",
+                "to grow",
+                "to develop",
+                "to increase",
+                "to enhance"
+            ]
+        },
+        {
+            "id": 290,
+            "question": "丈夫",
+            "answer": [
+                "zhàng fu"
+            ],
+            "meaning": [
+                "husband",
+                "CL:個|个[gè]"
+            ]
+        },
+        {
+            "id": 291,
+            "question": "找",
+            "answer": [
+                "zhǎo"
+            ],
+            "meaning": [
+                "to try to find",
+                "to look for",
+                "to call on sb",
+                "to find",
+                "to seek",
+                "to return",
+                "to give change"
+            ]
+        },
+        {
+            "id": 292,
+            "question": "着",
+            "answer": [
+                "zhe"
+            ],
+            "meaning": [
+                "aspect particle indicating action in progress"
+            ]
+        },
+        {
+            "id": 293,
+            "question": "真",
+            "answer": [
+                "zhēn"
+            ],
+            "meaning": [
+                "really",
+                "truly",
+                "indeed",
+                "real",
+                "true",
+                "genuine"
+            ]
+        },
+        {
+            "id": 294,
+            "question": "正在",
+            "answer": [
+                "zhèng zài"
+            ],
+            "meaning": [
+                "in the process of (doing something or happening)",
+                "while (doing)"
+            ]
+        },
+        {
+            "id": 295,
+            "question": "知道",
+            "answer": [
+                "zhī dào"
+            ],
+            "meaning": [
+                "to know",
+                "to be aware of",
+                "also pron. [zhī dao]"
+            ]
+        },
+        {
+            "id": 296,
+            "question": "准备",
+            "answer": [
+                "zhǔn bèi"
+            ],
+            "meaning": [
+                "preparation",
+                "to prepare",
+                "to intend",
+                "to be about to",
+                "reserve (fund)"
+            ]
+        },
+        {
+            "id": 297,
+            "question": "自行车",
+            "answer": [
+                "zì xíng chē"
+            ],
+            "meaning": [
+                "bicycle",
+                "bike",
+                "CL:輛|辆[liàng]"
+            ]
+        },
+        {
+            "id": 298,
+            "question": "走",
+            "answer": [
+                "zǒu"
+            ],
+            "meaning": [
+                "to walk",
+                "to go",
+                "to run",
+                "to move (of vehicle)",
+                "to visit",
+                "to leave",
+                "to go away",
+                "to die (euph.)",
+                "from",
+                "through",
+                "away (in compound verbs, such as 撤走)",
+                "to change (shape, form, meaning)"
+            ]
+        },
+        {
+            "id": 299,
+            "question": "最",
+            "answer": [
+                "zuì"
+            ],
+            "meaning": [
+                "most",
+                "the most",
+                "-est (superlative suffix)"
+            ]
+        },
+        {
+            "id": 300,
+            "question": "左边",
+            "answer": [
+                "zuǒ bian"
+            ],
+            "meaning": [
+                "left",
+                "the left side",
+                "to the left of"
+            ]
+        }
+    ]
+}

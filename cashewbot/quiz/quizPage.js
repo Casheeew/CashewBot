@@ -24,24 +24,29 @@ const cardEmbed = function(deckInfo) {
 
 const correctAnswerEmbed = function(card, user, scoreLimit) {
     embed = new EmbedBuilder()  
-    .setDescription(`<@${user.id} got the correct answer first!`)
+    .setDescription(`<@${user.id}> got the correct answer first!`)
     .addFields(
         {name: 'Answers', value: `${card.answer.join('\n')}`, inline: true},
-        {name: 'Scorers', value: `<@${user.id}>`},
-        {name: 'Meaning', value: `${card.meaning}`}
+        {name: 'Scorers', value: `<@${user.id}>`, inline: true},
+        {name: 'Meaning', value: `${card.meaning.join(', ')}`}
     )
     .setFooter({text: `playing until ${scoreLimit}`})
 
     return embed;
 }
 
-
-const incorrectAnswerEmbed = function(card, scoreLimit) {
+const incorrectAnswerEmbed = function(card, skip=false, scoreLimit, userid) {
+    if (skip) {
+       var descriptionMessage = `<@${userid}> asked me to skip this question!`
+    } else {
+    var descriptionMessage = 'No one got the correct answer'
+    }
     embed = new EmbedBuilder()  
-    .setDescription(`No one got the correct answer`)
+    .setDescription(descriptionMessage)
     .addFields(
         {name: 'Answers', value: `${card.answer.join('\n')}`, inline: true},
-        {name: 'Meaning', value: `${card.meaning}`}
+        {name: 'Scorers:', value: '-', inline: true},
+        {name: 'Meaning', value: `${card.meaning.join(', ')}`}
     )
     .setFooter({text: `playing until ${scoreLimit}`})
 

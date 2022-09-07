@@ -5,7 +5,7 @@ const { processMessage } = require('./commandsHelper.js');
 const convertKyujitaiShinjitai = async (msg, prefix) => {
   const processedMessage = processMessage(msg);
   message = processedMessage.value;
-  
+
   const kyujitai = new Kyujitai(async (error) => {
     if (!message) {
       embed = new EmbedBuilder()

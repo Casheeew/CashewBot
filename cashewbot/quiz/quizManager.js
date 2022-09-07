@@ -1,5 +1,5 @@
 const { updateOrCreate } = require('../commands/commandsHelper.js');
 ``
-const configUserSettings = function(UserData) {
+const configUserSettings = function (UserData) {
     return; //toDo
 }

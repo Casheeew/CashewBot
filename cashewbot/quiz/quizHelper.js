@@ -5,8 +5,8 @@ class Deck {
     get size() { return this.deck.cards.length };
     get name() { return this.deck.name };
     get description() { return this.deck.description };
-    get instructions() { return this.deck.instructions };    
-    get cards() {return this.deck.cards };
+    get instructions() { return this.deck.instructions };
+    get cards() { return this.deck.cards };
 }
 
 module.exports = {

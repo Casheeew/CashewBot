@@ -15,8 +15,9 @@
     "chinese-lexicon": "^1.0.43",
     "discord.js": "^14.3.0",
     "kyujitai": "^1.3.0",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.21.4",
-    "sqlite": "^4.1.2",
     "sqlite3": "^5.0.11"
   }
 }

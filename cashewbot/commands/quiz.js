@@ -1,8 +1,10 @@
-const { processMessage } = require('./commandsHelper.js');
+const { processMessage, UserData } = require('./commandsHelper.js');
 const renderText = require('../utils/renderText.js');
 const { AttachmentBuilder } = require('discord.js');
-const { getEmbedForQuiz } = require('../quiz/quizPage.js')
-const { placeTone } = require('../utils/parsePinyin.js')
+const { getEmbedForQuiz } = require('../quiz/quizPage.js');
+const { placeTone } = require('../utils/parsePinyin.js');
+const { quizScheduler } = require('../quiz/quizScheduler');
+const { shuffle } = require('../quiz/quizHelper.js')
 
 const processResponse = function (msg) {
   const msgLowercase = msg.content.toLowerCase();
@@ -20,33 +22,35 @@ const processResponse = function (msg) {
   }
 }
 
-const getGenerator = function* (list) {
-  for (let idx = 0; idx < list.length; idx += 1) {
-    yield list[idx];
+const initiateQuiz = async function (msg, prefix) {
+  let args = processMessage(msg, parseArgs=true).value;
+  const chosenDeck = args[0];
+  if (args[1] == 'challenge') {
+    var challenge = true;
+    console.log('hi')
+  } else {
+    challenge = false;
   }
-}
-const initiateQuiz = async function (msg) {
-  chosenDeck = processMessage(msg).value;
   if (chosenDeck) {
     var deck = require(`../assets/quiz_json/${chosenDeck}.json`);
   } else {
     msg.channel.send('Please choose a deck: hsk1, hsk2, hsk3, hsk4, hsk5, hsk6')
     return;
   }
+
   const pointsRack = {}
   const buffer = 0
   const timer = 4000 + buffer
-  const cards = deck.cards;
+  const cards = shuffle(deck.cards);
   const embeds = getEmbedForQuiz(deck);
-  const cardGenerator = getGenerator(cards);
+
+  const schedule = new quizScheduler(cards.length);
+
   var quizRunning = true;
   msg.channel.send({ embeds: [embeds.startQuizEmbed] })
 
-  while (quizRunning) {
-    var nextCard = cardGenerator.next();
-    if (nextCard.done) break;
-
-    var card = nextCard.value;
+  while (quizRunning && cards.length > 0) {
+    let card = cards.shift()
 
     const filter = msg => {
       if (msg.author.bot) return false;
@@ -61,14 +65,32 @@ const initiateQuiz = async function (msg) {
       (resolve, reject) => collector.on('collect', m => {
         res = processResponse(m);
         userid = m.author.id;
-        if (res === 'skip') resolve({ scorers: [], embed: embeds.incorrectAnswerEmbed(card, skip = true, null || 10, userid) })
-        else if (res === 'stop') {
+        if (res === 'skip') {
+          resolve({ scorers: [], embed: embeds.incorrectAnswerEmbed(card, skip = true, null || 10, userid) })
+
+          if (challenge) {
+            card['reviewPile'] = 0;
+            cards.splice(schedule.boxes[card['reviewPile']], 0, card);
+          }
+        }
+        else if (res === `${prefix}stop`) {
           reject(m)
         }
         else if (card.answer.some(ans => res === ans)) {
           var embed = embeds.correctAnswerEmbed(card, m.author, null || 10); // scoreLimit
           resolve({ scorers: [m.author.id], embed });
           collector.stop();
+
+          if (challenge) {
+            if (card['reviewPile'] < 5) {
+              card['reviewPile'] += 1;
+            }
+
+            if (card['reviewPile']) {
+              cards.splice(schedule.boxes[card['reviewPile']], 0, card);
+              console.log(cards)
+            }
+          } // If challenge mode, add the card back at index reviewPile if it is present
         }
       })
     )
@@ -78,6 +100,11 @@ const initiateQuiz = async function (msg) {
         setTimeout(() => {
           var embed = embeds.incorrectAnswerEmbed(card, skip = false, null || 10); // scoreLimit
           resolve({ scorers: [], embed })
+
+          if (challenge) {
+            card['reviewPile'] = 0;
+            cards.splice(schedule.boxes[card['reviewPile']], 0, card);
+          }
         },
           timer
         )
@@ -86,8 +113,10 @@ const initiateQuiz = async function (msg) {
 
     await Promise.race([waitForCorrectAnswer, waitForTimeout]).then((result) => {
       for (scorer of result.scorers) {
+
         if (pointsRack[scorer]) {
           pointsRack[scorer] += 1;
+
           if (pointsRack[scorer] == 10) {
             msg.channel.send(`<@${scorer}> got 10 points!`)
             quizRunning = false;
@@ -97,10 +126,15 @@ const initiateQuiz = async function (msg) {
         }
       }
       collector.channel.send({ embeds: [result.embed] })
+
     }).catch((message) => {
       message.channel.send({ embeds: [embeds.stopQuizEmbed(deck, message.author.id, pointsRack)] });
       quizRunning = false;
     })
+  }
+
+  if (cards.length == 0) {
+    message.channel.send('You have conquered this deck!');
   }
 }
 

@@ -1,11 +1,10 @@
-/* setup SQLite */
+/* setup database */
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('database', 'user', 'password', {
+const sequelize = new Sequelize(process.env.Database || 'postgres', process.env.Host || 'postgres', process.env.postgresPassword, {
   host: 'localhost',
-  dialect: 'sqlite',
   logging: false,
-  storage: 'database.sqlite',
-}) // Connection information
+  dialect: 'postgres' 
+}) 
 
 const UserData = sequelize.define('userData', {
   userId: {
@@ -48,8 +47,11 @@ const processMessage = (msg, parseArgs = false) => {
     };
   };
   if (parseArgs) {
+    let args = msg.content.split(' ');
+    args.shift();
+
     return {
-      value: msg.content.split(' ').shift(),
+      value: args,
     };
   };
   return {

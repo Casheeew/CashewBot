@@ -317,28 +317,21 @@
             "id": 170,
             "question": "得",
             "answer": [
-                "de"
-            ],
-            "meaning": [
-                "structural particle: used after a verb (or adjective as main verb)",
-                "linking it to following phrase indicating effect",
-                "degree",
-                "possibility etc"
-            ]
-        },
-        {
-            "id": 171,
-            "question": "得",
-            "answer": [
+                "de",
                 "děi"
             ],
             "meaning": [
-                "to have to",
+                "(de~) structural particle: used after a verb (or adjective as main verb)",
+                "linking it to following phrase indicating effect",
+                "degree",
+                "possibility etc",
+                "(děi~) to have to",
                 "must",
                 "ought to",
                 "to need to"
             ]
         },
+
         {
             "id": 172,
             "question": "弟弟",

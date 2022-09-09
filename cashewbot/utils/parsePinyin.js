@@ -56,7 +56,6 @@ const placeTone = function (numberedPinyin) {
         let toneIdx = syllable.charAt(syllable.length - 1);
         let accentPosition = getPosition(syllable);
         if (accentPosition == undefined) {
-            console.log('hi')
             return undefined;
         }
         let accentedChar = ACCENTED[toneIdx][syllable.charAt(accentPosition)];

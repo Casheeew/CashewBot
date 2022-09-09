@@ -3,8 +3,21 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize(process.env.Database || 'postgres', process.env.DBUser || 'postgres', process.env.postgresPassword, {
   host: process.env.Host || 'localhost',
   logging: false,
-  dialect: 'postgres' 
+  dialect: 'postgres',
+  dialectOptions: {
+    require: true,
+    rejectUnauthorized: false
+  }
 }) 
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection to database has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 const UserData = sequelize.define('userData', {
   userId: {

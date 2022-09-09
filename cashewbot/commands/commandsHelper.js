@@ -5,10 +5,12 @@ const sequelize = new Sequelize(process.env.Database || 'postgres', process.env.
   logging: false,
   dialect: 'postgres',
   dialectOptions: {
-    require: true,
-    rejectUnauthorized: false
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
   }
-}) 
+})
 
 sequelize
   .authenticate()

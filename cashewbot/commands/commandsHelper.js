@@ -5,10 +5,10 @@ const sequelize = new Sequelize(process.env.Database || 'postgres', process.env.
   logging: false,
   dialect: 'postgres',
   dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    }
+    // ssl: {
+    //   require: false, // true on heroku
+    //   rejectUnauthorized: false
+    // }
   }
 })
 
@@ -54,7 +54,7 @@ async function updateOrCreate(model, where, newItem) {
 };
 
 // Trim message to get rid of command prefix
-const processMessage = (msg, parseArgs = false) => {
+const processMessage = (msg, parseArgs=false) => {
   index = msg.content.indexOf(' ');
   if (index == -1) {
     return {
@@ -63,14 +63,16 @@ const processMessage = (msg, parseArgs = false) => {
   };
   if (parseArgs) {
     let args = msg.content.split(' ');
-    args.shift();
+    prefix = args.shift();
 
     return {
       value: args,
+      prefix,
     };
   };
   return {
     value: msg.content.slice(index + 1),
+    prefix,
   };
 };
 
@@ -79,7 +81,7 @@ const getPrefixes = async function (guild) {
   if (await guildData) {
     prefix = await guildData.get('prefix');
   } else {
-    prefix = '!';
+    prefix = ['!'];
   }
   return prefix;
 }

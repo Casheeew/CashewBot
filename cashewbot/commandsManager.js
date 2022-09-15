@@ -22,8 +22,9 @@ const helpCommand = new Command('help', async (msg, prefix) => helpPage(msg, pre
 const aboutCommand = new Command('about', async (msg, prefix) => aboutPage(msg));
 const convertPinyinCommand = new Command('cvpinyin', async (msg, prefix) => convertAccentedPinyin(msg, prefix));
 const hiCommand = new Command('hi', async msg => msg.channel.send('Hi'));
-
+// temp
 const commands = {
+  'cvpinyin': convertPinyinCommand.run,
   's': searchCommand.run,
   'search': searchCommand.run,
   'k': kyujiCommand.run,
@@ -34,13 +35,11 @@ const commands = {
   'quiz': quizCommand.run,
   'about': aboutCommand.run,
   'prefix': prefixCommand.run,
-  'cvpinyin': convertPinyinCommand.run,
-  'hi': hiCommand.run
+  'hi': hiCommand.run,
 };
 
 const switchBetweenCommands = async msg => {
-  const prefixStr = await getPrefixes(msg.guild);
-  const prefixList = await prefixStr.split(' ');
+  const prefixList = await JSON.parse(await getPrefixes(msg.guild));
 
   for (const cmdname in commands) {
     for (const prefix of prefixList) {

@@ -1,4 +1,4 @@
-const { processMessage, UserData } = require('./commandsHelper.js');
+const { processMessage, getPrefixes, GuildData } = require('./commandsHelper.js');
 const renderText = require('../utils/renderText.js');
 const { AttachmentBuilder } = require('discord.js');
 const { getEmbedForQuiz } = require('../quiz/quizPage.js');
@@ -6,13 +6,14 @@ const { placeTone } = require('../utils/parsePinyin.js');
 const { quizScheduler } = require('../quiz/quizScheduler');
 const { shuffle } = require('../quiz/quizHelper.js')
 
-const processResponse = function (msg) {
+const processResponse = function (msg, prefix) {
+  
   const msgLowercase = msg.content.toLowerCase();
   if (msgLowercase === 'skip' || msgLowercase === 's' || msgLowercase === 'ｓ' || msgLowercase === '。' || msgLowercase === '。。') {
     return 'skip';
   }
-  if (msgLowercase === 'stop' || msgLowercase === 'end') {
-    return 'stop';
+  if (msgLowercase === `${prefix}stop` || msgLowercase === `${prefix}end`) {
+    return `${prefix}stop`;
   }
   const accentedPinyin = placeTone(msgLowercase);
   if (!accentedPinyin) {
@@ -22,7 +23,8 @@ const processResponse = function (msg) {
   }
 }
 
-const initiateQuiz = async function (msg, prefix) {
+const initiateQuiz = async function (msg) {
+
   let args = processMessage(msg, parseArgs=true).value;
   const chosenDeck = args[0];
   if (args[1] == 'challenge') {
@@ -38,9 +40,11 @@ const initiateQuiz = async function (msg, prefix) {
     return;
   }
 
-  const pointsRack = {}
-  const buffer = 0
-  const timer = 4000 + buffer
+  const prefixList = await JSON.parse(await getPrefixes(msg.guild));
+
+  const pointsRack = {};
+  const buffer = 0;
+  const timer = 4000 + buffer;
   const cards = shuffle(deck.cards);
   const embeds = getEmbedForQuiz(deck);
 
@@ -63,34 +67,39 @@ const initiateQuiz = async function (msg, prefix) {
 
     const waitForCorrectAnswer = new Promise(
       (resolve, reject) => collector.on('collect', m => {
-        res = processResponse(m);
-        userid = m.author.id;
-        if (res === 'skip') {
-          resolve({ scorers: [], embed: embeds.incorrectAnswerEmbed(card, skip = true, null || 10, userid) })
+        for (let prefix of prefixList) {
+          res = processResponse(m, prefix);
+          userid = m.author.id;
+          if (res === 'skip') {
+            resolve({ scorers: [], embed: embeds.incorrectAnswerEmbed(card, skip = true, null || 10, userid) })
 
-          if (challenge) {
-            card['reviewPile'] = 0;
-            cards.splice(schedule.boxes[card['reviewPile']], 0, card);
-          }
-        }
-        else if (res === `${prefix}stop`) {
-          reject(m)
-        }
-        else if (card.answer.some(ans => res === ans)) {
-          var embed = embeds.correctAnswerEmbed(card, m.author, null || 10); // scoreLimit
-          resolve({ scorers: [m.author.id], embed });
-          collector.stop();
-
-          if (challenge) {
-            if (card['reviewPile'] < 5) {
-              card['reviewPile'] += 1;
-            }
-
-            if (card['reviewPile']) {
+            if (challenge) {
+              card['reviewPile'] = 0;
               cards.splice(schedule.boxes[card['reviewPile']], 0, card);
-              console.log(cards)
+              break;
             }
-          } // If challenge mode, add the card back at index reviewPile if it is present
+          }
+          else if (res === `${prefix}stop`) {
+            reject(m);
+            break;
+          }
+          else if (card.answer.some(ans => res === ans)) {
+            var embed = embeds.correctAnswerEmbed(card, m.author, null || 10); // scoreLimit
+            resolve({ scorers: [m.author.id], embed });
+            collector.stop();
+
+            if (challenge) {
+              if (card['reviewPile'] < 5) {
+                card['reviewPile'] += 1;
+              }
+
+              if (card['reviewPile']) {
+                cards.splice(schedule.boxes[card['reviewPile']], 0, card);
+                console.log(cards)
+              }
+            } // If challenge mode, add the card back at index reviewPile if it is present
+            break;
+          }
         }
       })
     )

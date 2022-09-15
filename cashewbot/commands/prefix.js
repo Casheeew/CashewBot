@@ -2,10 +2,12 @@ const { EmbedBuilder } = require('discord.js');
 const { updateOrCreate, processMessage, getPrefixes, GuildData } = require('./commandsHelper.js');
 
 const prefixHandler = async function (msg, prefix) {
-  const prefixStr = await getPrefixes(msg.guild)
-  const prefixList = await prefixStr.split(' ');
-  const processedMessage = processMessage(msg);
-  const newPrefix = processedMessage.value;
+  const prefixList = await JSON.parse(await getPrefixes(msg.guild))
+  const processedMessage = processMessage(msg).value;
+  if (processedMessage) {
+    var newPrefix = processedMessage.split(' ');
+  } 
+  
   const currentDisplayedPrefix = prefix;
 
   const embed = new EmbedBuilder()
@@ -22,7 +24,7 @@ const prefixHandler = async function (msg, prefix) {
 
   embed.setTitle('Prefix')
     .setDescription(`Changed Prefix!`);
-  updateOrCreate(GuildData, { guildId: msg.guild.id }, { guildId: msg.guild.id, name: msg.guild.name, prefix: newPrefix });
+  updateOrCreate(GuildData, { guildId: msg.guild.id }, { guildId: msg.guild.id, name: msg.guild.name, prefix: JSON.stringify(newPrefix) });
 
   msg.channel.send({ embeds: [embed] });
 }

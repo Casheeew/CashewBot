@@ -34,7 +34,7 @@ const mandarinSearch = async function (msg, prefix) {
   var searchResult = await lookup(processedMessage.value, pageIdx, prefix);
   const result = await msg.channel.send({ embeds: [await searchResult.embed] });
   if (searchResult.help) return;
-  
+
   const switchBetweeenReactions = async function (reaction) {
     switch (reaction.emoji.name) {
       case openBook.name:

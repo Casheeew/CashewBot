@@ -9,15 +9,15 @@ const helpPageEmbed = function (displayedPrefix) {
         .setDescription('My commands:')
         .addFields(
             {
-                name: `${displayedPrefix}search (alias: !s)`,
+                name: `${displayedPrefix}search (alias: ${displayedPrefix}s)`,
                 value: 'Search for a Chinese or English word on CC-CEDICT'
             },
             {
-                name: `${displayedPrefix}kyuji (alias: !k)`,
+                name: `${displayedPrefix}kyuji (alias: ${displayedPrefix}k)`,
                 value: 'Convert a Japanese sentence from [Shinjitai(新字体)](https://en.wikipedia.org/wiki/Shinjitai) to [Kyujitai(旧字体)](https://en.wikipedia.org/wiki/Ky%C5%ABjitai) and back'
             },
             {
-                name: `${displayedPrefix}help (alias: !h)`,
+                name: `${displayedPrefix}help (alias: ${displayedPrefix}h)`,
                 value: 'How did I get here?'
             },
             {

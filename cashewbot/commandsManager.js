@@ -40,7 +40,6 @@ const commands = {
 
 const switchBetweenCommands = async msg => {
   const prefixList = await JSON.parse(await getPrefixes(msg.guild));
-
   for (const cmdname in commands) {
     for (const prefix of prefixList) {
       if (msg.content.split(' ')[0] == `${await prefix}${cmdname}`) {

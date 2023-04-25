@@ -92,7 +92,7 @@ const getPrefixes = async function (guild) {
   if (guildData) {
     prefix = await guildData.get('prefix');
   } else {
-    prefix = ['!'];
+    prefix = JSON.stringify(['!']);
   }
   return prefix;
 }

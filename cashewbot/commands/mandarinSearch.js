@@ -24,14 +24,27 @@ const lookup = async function (message, pageIdx, prefix) {
     return { embed, maxPageIdx: -1, help: true };
   };
   result = await returnLookUpWordEmbed(message, pageIdx * 4)
-  return { embed: result.embed, maxPageIdx: Math.floor(result.entriesCount / 4), help: false }; // Each page has max. 4 entries
+  return { embed: result.embed, maxPageIdx: Math.floor(result.entriesCount / 4), entriesCount: result.entriesCount, help: false }; // Each page has max. 4 entries
 };
 
 const mandarinSearch = async function (msg, prefix) {
   const processedMessage = processMessage(msg);
+  var query = processedMessage.value;
   var pageIdx = 0;
 
-  var searchResult = await lookup(processedMessage.value, pageIdx, prefix);
+  var searchResult = await lookup(query, pageIdx, prefix);
+
+  // While no entries found, return entries from a smaller substring
+  while (searchResult.entriesCount == 0 && query.length > 1 && !searchResult.help) {
+    query = query.slice(0, query.length - 1)
+    searchResult = await lookup(query, pageIdx, prefix)
+  } 
+
+  // If no entries found at all, return the original lookup
+  if (searchResult.entriesCount == 0 && query.length == 1 && !searchResult.help) {
+    searchResult = await lookup(processedMessage.value, pageIdx, prefix)    
+  } 
+
   const result = await msg.channel.send({ embeds: [await searchResult.embed] });
   if (searchResult.help) return;
 
@@ -41,12 +54,12 @@ const mandarinSearch = async function (msg, prefix) {
         break;
       case arrowLeft.name:
         if (pageIdx > 0) pageIdx -= 1;
-        searchResult = await lookup(processedMessage.value, pageIdx, prefix);
+        searchResult = await lookup(query, pageIdx, prefix);
         result.edit({ embeds: [await searchResult.embed] });
         break;
       case arrowRight.name:
         if (pageIdx < searchResult.maxPageIdx) pageIdx += 1;
-        searchResult = await lookup(processedMessage.value, pageIdx, prefix);
+        searchResult = await lookup(query, pageIdx, prefix);
         result.edit({ embeds: [await searchResult.embed] });
         break;
     };

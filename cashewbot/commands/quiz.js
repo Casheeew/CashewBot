@@ -1,29 +1,65 @@
-const { processMessage, getPrefixes, GuildData } = require('./commandsHelper.js');
+const { processMessage, getPrefixes, UserData, updateOrCreate } = require('./commandsHelper.js');
 const renderText = require('../utils/renderText.js');
 const { AttachmentBuilder } = require('discord.js');
 const { getEmbedForQuiz } = require('../quiz/quizPage.js');
 const { placeTone } = require('../utils/parsePinyin.js');
 const { quizScheduler } = require('../quiz/quizScheduler');
-const { shuffle } = require('../quiz/quizHelper.js')
+const { shuffle } = require('../quiz/quizHelper.js');
+const { Op } = require('sequelize');
+
+class Save {
+  constructor (user, save, model) {
+    this.user = user;
+    this.save = save;
+    this.model = model;
+    this.found = this.model.findOne({where: {userId: this.user.id}})
+  }
+
+  getSaves() {
+    const saves = [];
+    for (let i in Array(3)) {
+      saves.push(this.found.get(`save${i+1}`))
+    }
+
+    return saves;
+  }
+
+  UpdateSaves() {
+    const saves = this.getSaves();
+    console.log(saves);
+    for (i in Array(3)) {
+      if (!saves[i]) {
+        saves[i] = sth; //
+        break;
+      }
+    }
+  }
+  
+}
 
 const processResponse = function (msg, prefix) {
   
   const msgLowercase = msg.content.toLowerCase();
+
   if (msgLowercase === 'skip' || msgLowercase === 's' || msgLowercase === 'ｓ' || msgLowercase === '。' || msgLowercase === '。。') {
     return 'skip';
   }
   if (msgLowercase === `${prefix}stop` || msgLowercase === `${prefix}end`) {
     return `${prefix}stop`;
   }
+
   const accentedPinyin = placeTone(msgLowercase);
+
   if (!accentedPinyin) {
     return msgLowercase;
   } else {
     return accentedPinyin;
   }
+
 }
 
 const initiateQuiz = async function (msg) {
+  await UserData.sync({force: true})
 
   let args = processMessage(msg, parseArgs=true).value;
   const chosenDeck = args[0];
@@ -82,6 +118,9 @@ const initiateQuiz = async function (msg) {
           else if (res === `${prefix}stop`) {
             reject(m);
             break;
+          }
+          else if (res === `${prefix}save`) {
+            updateSave(msg.author, cards)
           }
           else if (card.answer.some(ans => res === ans)) {
             var embed = embeds.correctAnswerEmbed(card, m.author, null || 10); // scoreLimit

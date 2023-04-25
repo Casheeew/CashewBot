@@ -5,7 +5,7 @@ const { helpPage } = require('./commands/help.js');
 const { aboutPage } = require('./commands/about.js');
 const { prefixHandler } = require('./commands/prefix.js');
 const { convertAccentedPinyin } = require('./commands/cvpinyin.js')
-const { getPrefixes } = require('./commands/commandsHelper.js');
+const { getPrefixes, sequelize } = require('./commands/commandsHelper.js');
 
 class Command {
   constructor(name, run) {

@@ -7,7 +7,7 @@ const sequelize = new Sequelize(process.env.Database || 'postgres', process.env.
   dialectOptions: {
     // ssl: {
     //   require: false, // true on heroku
-    //   rejectUnauthorized: false
+    //   rejectUnauthorized: false 
     // }
   }
 })
@@ -26,6 +26,18 @@ const UserData = sequelize.define('userData', {
     type: Sequelize.STRING,
     unique: true,
   },
+  save1: {
+    type: Sequelize.JSON,
+    defaultValue: null,
+  },
+  save2: {
+    type: Sequelize.JSON,
+    defaultValue: null,
+  },
+  save3: {
+    type: Sequelize.JSON,
+    defaultValue: null,
+  }
 });
 
 const GuildData = sequelize.define('guildData', {
@@ -36,11 +48,10 @@ const GuildData = sequelize.define('guildData', {
   name: Sequelize.STRING,
   prefix: {
     type: Sequelize.STRING,
-    defaultValue: '!',
+    defaultValue: '[!]',
     allowNull: false,
   },
 });
-
 
 // Update or create a new SQL model
 async function updateOrCreate(model, where, newItem) {
@@ -78,16 +89,18 @@ const processMessage = (msg, parseArgs=false) => {
 
 const getPrefixes = async function (guild) {
   const guildData = await GuildData.findOne({ where: { guildId: guild.id } });
-  if (await guildData) {
+  if (guildData) {
     prefix = await guildData.get('prefix');
   } else {
     prefix = ['!'];
   }
   return prefix;
 }
+
 module.exports = {
   UserData,
   GuildData,
+  sequelize,
   updateOrCreate,
   processMessage,
   getPrefixes,

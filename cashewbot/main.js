@@ -1,6 +1,9 @@
 const { Client, GatewayIntentBits, Partials, channelLink } = require('discord.js');
 const { switchBetweenCommands } = require('../cashewbot/commandsManager.js');
 const { sequelize } = require('./commands/commandsHelper.js')
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 // Create a new client instance
 const client = new Client({
@@ -31,4 +34,4 @@ client.once('ready', c => {
 });
 
 // Login to Discord with your client's token
-client.login(process.env.botToken);
+client.login(process.env.BOT_TOKEN);

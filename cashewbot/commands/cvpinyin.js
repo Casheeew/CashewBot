@@ -22,7 +22,7 @@ const convertAccentedPinyin = function (msg, prefix) {
         return;
     };
 
-    return placeTone(message);
+    msg.channel.send(placeTone(message));
 }
 
 exports.convertAccentedPinyin = convertAccentedPinyin;

@@ -40,14 +40,14 @@ const getSyllables = function (accentList, pinyin) {
 
         syllables.push(syllable);
     }
-
+    syllables.push(remaining)
     return syllables;
 }
 const placeTone = function (numberedPinyin) {
 
     var accentKeys = numberedPinyin.match(/[0-9]/g);
     if (!accentKeys) {
-        return undefined;
+        return numberedPinyin;
     }
     const syllables = getSyllables(accentKeys, numberedPinyin);
 
@@ -56,7 +56,12 @@ const placeTone = function (numberedPinyin) {
         let toneIdx = syllable.charAt(syllable.length - 1);
         let accentPosition = getPosition(syllable);
         if (accentPosition == undefined) {
-            return undefined;
+            results.push(syllable);
+            continue
+        }
+        if (ACCENTED[toneIdx] == undefined) {
+            results.push(syllable);
+            continue
         }
         let accentedChar = ACCENTED[toneIdx][syllable.charAt(accentPosition)];
         let accentedPinyin = `${syllable.slice(0, accentPosition)}${accentedChar}${syllable.slice(accentPosition + 1, -1)}`;

@@ -80,7 +80,7 @@ const initiateQuiz = async function (msg) {
 
   const pointsRack = {};
   const buffer = 0;
-  const timer = 4000 + buffer;
+  const timer = 10000 + buffer;
   const cards = shuffle(deck.cards);
   const embeds = getEmbedForQuiz(deck);
 

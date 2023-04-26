@@ -1,5 +1,6 @@
-const placeTone = require('../utils/parsePinyin.js');
+const { placeTone } = require('../utils/parsePinyin.js');
 const { processMessage } = require('./commandsHelper.js');
+const { EmbedBuilder } = require('discord.js');
 
 const convertAccentedPinyin = function (msg, prefix) {
     const processedMessage = processMessage(msg);

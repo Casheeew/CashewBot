@@ -3,10 +3,11 @@ const { EmbedBuilder } = require('discord.js');
 const { processMessage } = require('./commandsHelper.js');
 
 class ReactionCommand {
-  constructor(name, id) {
+  constructor(name, id, run) {
     this.name = name;
     this.id = id;
   };
+
 };
 
 const openBook = new ReactionCommand('OpenBook', '1015246188359979108')
@@ -38,12 +39,12 @@ const mandarinSearch = async function (msg, prefix) {
   while (searchResult.entriesCount == 0 && query.length > 1 && !searchResult.help) {
     query = query.slice(0, query.length - 1)
     searchResult = await lookup(query, pageIdx, prefix)
-  } 
+  }
 
   // If no entries found at all, return the original lookup
   if (searchResult.entriesCount == 0 && query.length == 1 && !searchResult.help) {
-    searchResult = await lookup(processedMessage.value, pageIdx, prefix)    
-  } 
+    searchResult = await lookup(processedMessage.value, pageIdx, prefix)
+  }
 
   const result = await msg.channel.send({ embeds: [await searchResult.embed] });
   if (searchResult.help) return;

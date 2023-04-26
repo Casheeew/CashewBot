@@ -24,7 +24,7 @@ const questionEmbed = function (deckInfo) {
 
 const correctAnswerEmbed = function (card, userid, scoreLimit) {
     embed = new EmbedBuilder()
-        .setDescription(`<@${userid}> got the correct answer first!`)
+        .setDescription(`${userid} got the correct answer first!`)
         .addFields(
             { name: 'Answers', value: `${card.answer.join('\n')}`, inline: true },
             { name: 'Scorers', value: `<@${userid}>`, inline: true },
@@ -37,7 +37,7 @@ const correctAnswerEmbed = function (card, userid, scoreLimit) {
 
 const incorrectAnswerEmbed = function (card, skip = false, scoreLimit, userid) {
     if (skip) {
-        var descriptionMessage = `<@${userid}> asked me to skip this question!`
+        var descriptionMessage = `${userid} asked me to skip this question!`
     } else {
         var descriptionMessage = 'No one got the correct answer'
     }

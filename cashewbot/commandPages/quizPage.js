@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const { Deck } = require('./quizHelper.js')
+const { Deck } = require('../quiz/quizHelper.js')
 
 const startQuizEmbed = function (deckInfo) {
     const scoreLimit = null || 10; // Will change
@@ -27,7 +27,7 @@ const correctAnswerEmbed = function (card, userid, scoreLimit) {
         .setDescription(`${userid} got the correct answer first!`)
         .addFields(
             { name: 'Answers', value: `${card.answer.join('\n')}`, inline: true },
-            { name: 'Scorers', value: `<@${userid}>`, inline: true },
+            { name: 'Scorers', value: `${userid}`, inline: true },
             { name: 'Meaning', value: `${card.meaning.join(', ')}` }
         )
         .setFooter({ text: `playing until ${scoreLimit}` })
@@ -37,7 +37,7 @@ const correctAnswerEmbed = function (card, userid, scoreLimit) {
 
 const incorrectAnswerEmbed = function (card, skip = false, scoreLimit, userid) {
     if (skip) {
-        var descriptionMessage = `${userid} asked me to skip this question!`
+        var descriptionMessage = `<@${userid}> asked me to skip this question!`
     } else {
         var descriptionMessage = 'No one got the correct answer'
     }

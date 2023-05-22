@@ -14,8 +14,8 @@ const openBook = new ReactionCommand('OpenBook', '1015246188359979108')
 const arrowLeft = new ReactionCommand('LeftArrow', '1015443770113806491')
 const arrowRight = new ReactionCommand('RightArrow', '1015443768012455976')
 
-const lookup = async function (message, pageIdx, prefix) {
-  if (!message) {
+const lookup = async function (query, pageIdx, prefix) {
+  if (!query) {
     embed = new EmbedBuilder()
       .setColor(0x0099FF) // Sky Blue
       .setAuthor({ name: '叉焼', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg' })
@@ -24,7 +24,7 @@ const lookup = async function (message, pageIdx, prefix) {
 
     return { embed, maxPageIdx: -1, help: true };
   };
-  result = await returnLookUpWordEmbed(message, pageIdx * 4)
+  result = await returnLookUpWordEmbed(query, pageIdx * 4)
   return { embed: result.embed, maxPageIdx: Math.floor(result.entriesCount / 4), entriesCount: result.entriesCount, help: false }; // Each page has max. 4 entries
 };
 

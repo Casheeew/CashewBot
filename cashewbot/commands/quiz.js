@@ -1,24 +1,24 @@
 const { processMessage, getPrefixes, UserData, updateOrCreate } = require('./commandsHelper.js');
 const renderText = require('../utils/renderText.js');
 const { AttachmentBuilder } = require('discord.js');
-const { getEmbedForQuiz } = require('../quiz/quizPage.js');
+const { getEmbedForQuiz } = require('../commandPages/quizPage.js');
 const { placeTone } = require('../utils/parsePinyin.js');
 const { quizScheduler } = require('../quiz/quizScheduler');
 const { shuffle } = require('../quiz/quizHelper.js');
 const { Op } = require('sequelize');
 
 class Save {
-  constructor (user, save, model) {
+  constructor(user, save, model) {
     this.user = user;
     this.save = save;
     this.model = model;
-    this.found = this.model.findOne({where: {userId: this.user.id}})
+    this.found = this.model.findOne({ where: { userId: this.user.id } })
   }
 
   getSaves() {
     const saves = [];
     for (let i in Array(3)) {
-      saves.push(this.found.get(`save${i+1}`))
+      saves.push(this.found.get(`save${i + 1}`))
     }
 
     return saves;
@@ -34,11 +34,11 @@ class Save {
       }
     }
   }
-  
+
 }
 
 const processResponse = function (msg, prefix) {
-  
+
   const msgLowercase = msg.content.toLowerCase();
 
   if (msgLowercase === 'skip' || msgLowercase === 's' || msgLowercase === 'ｓ' || msgLowercase === '。' || msgLowercase === '。。') {
@@ -59,13 +59,12 @@ const processResponse = function (msg, prefix) {
 }
 
 const initiateQuiz = async function (msg) {
-  await UserData.sync({force: true})
+  await UserData.sync({})
 
-  let args = processMessage(msg, parseArgs=true).value;
+  let args = processMessage(msg, parseArgs = true).value;
   const chosenDeck = args[0];
   if (args[1] == 'challenge') {
     var challenge = true;
-    console.log('hi')
   } else {
     challenge = false;
   }
@@ -80,7 +79,7 @@ const initiateQuiz = async function (msg) {
 
   const pointsRack = {};
   const buffer = 0;
-  const timer = 10000 + buffer;
+  const timer = 14000 + buffer;
   const cards = shuffle(deck.cards);
   const embeds = getEmbedForQuiz(deck);
 
@@ -99,7 +98,6 @@ const initiateQuiz = async function (msg) {
     const collector = msg.channel.createMessageCollector({ filter });
     const question = new AttachmentBuilder(renderText.render(card.question), { name: 'question.png' })
     msg.channel.send({ embeds: [embeds.questionEmbed.setImage('attachment://question.png')], files: [question] });
-
 
     const waitForCorrectAnswer = new Promise(
       (resolve, reject) => collector.on('collect', m => {

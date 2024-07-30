@@ -1,5 +1,6 @@
 const { naverLookupEmbed } = require('../commandPages/naverLookupPage')
 const { processMessage } = require('./commandsHelper.js');
+const { EmbedBuilder } = require('discord.js');
 
 const searchResult = async function (msg, prefix) {
     const processedMessage = processMessage(msg);

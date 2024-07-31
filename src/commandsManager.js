@@ -1,5 +1,5 @@
 const { initiateQuiz } = require('./commands/quiz.js');
-const { mandarinSearch } = require('./commands/mandarinSearch.js');
+// const { mandarinSearch } = require('./commands/mandarinSearch.js');
 const { convertKyujitaiShinjitai } = require('./commands/kyujitai.js');
 const { helpPage } = require('./commands/help.js');
 const { aboutPage } = require('./commands/about.js');
@@ -16,7 +16,7 @@ class Command {
 };
 
 const prefixCommand = new Command('prefix', async (msg, prefix) => prefixHandler(msg, prefix));
-const searchCommand = new Command('search', async (msg, prefix) => mandarinSearch(msg, prefix));
+// const searchCommand = new Command('search', async (msg, prefix) => mandarinSearch(msg, prefix));
 const kyujiCommand = new Command('kyuji', async (msg, prefix) => convertKyujitaiShinjitai(msg, prefix));
 const quizCommand = new Command('quiz', async (msg, prefix) => initiateQuiz(msg, prefix));
 const helpCommand = new Command('help', async (msg, prefix) => helpPage(msg, prefix));

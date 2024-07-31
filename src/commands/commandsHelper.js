@@ -1,16 +1,6 @@
 /* setup database */
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize(process.env.Database || 'postgres', process.env.DBUser || 'postgres', process.env.postgresPassword, {
-  host: process.env.Host || 'localhost',
-  logging: false,
-  dialect: 'postgres',
-  dialectOptions: {
-    // ssl: {
-    //   require: false, // true on heroku
-    //   rejectUnauthorized: false 
-    // }
-  }
-})
+const sequelize = new Sequelize(process.env.DB_URL);
 
 sequelize
   .authenticate()

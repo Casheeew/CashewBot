@@ -1,34 +1,34 @@
 import { EmbedBuilder } from 'discord.js';
+import { Command } from './types';
 
-const helpPageEmbed = function (displayedPrefix) {
-
-    const embed = new EmbedBuilder()
+const command: Command = {
+    id: 'help',
+    names: ['help'],
+    description: 'How did I get here?',
+    exec: async (msg, prefix) => {
+        const embed = new EmbedBuilder()
         .setColor(0xF8C8DC) // Pastel Pink
         .setAuthor({ name: '叉焼', iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg' })
         .setDescription('My commands:')
         .addFields(
             {
-                name: `${displayedPrefix}search (alias: ${displayedPrefix}s)`,
+                name: `${prefix}search (alias: ${prefix}s)`,
                 value: 'Search for a Chinese or English word on CC-CEDICT'
             },
             {
-                name: `${displayedPrefix}kyuji (alias: ${displayedPrefix}k)`,
-                value: 'Convert a Japanese sentence from [Shinjitai(新字体)](https://en.wikipedia.org/wiki/Shinjitai) to [Kyujitai(旧字体)](https://en.wikipedia.org/wiki/Ky%C5%ABjitai) and back'
-            },
-            {
-                name: `${displayedPrefix}help (alias: ${displayedPrefix}h)`,
+                name: `${prefix}help (alias: ${prefix}h)`,
                 value: 'How did I get here?'
             },
             {
-                name: `${displayedPrefix}cvpinyin`,
+                name: `${prefix}cvpinyin`,
                 value: 'Convert a Japanese sentence from numbered Pinyin to accented Pinyin'
             },
             {
-                name: `${displayedPrefix}prefix`,
+                name: `${prefix}prefix`,
                 value: 'Change my prefix!'
             },
             {
-                name: `${displayedPrefix}about`,
+                name: `${prefix}about`,
                 value: 'Show more information about me'
             },
         )
@@ -36,8 +36,8 @@ const helpPageEmbed = function (displayedPrefix) {
             text: 'Type !help (specific command) to see more about that command!',
             iconURL: 'https://i.postimg.cc/W3FjFhDt/Red-Bird.jpgc'
         });
-
-    return embed;
+        await msg.channel.send({ embeds: [embed] });
+    },
 }
 
-export default helpPageEmbed;
+export default command;

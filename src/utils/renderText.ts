@@ -38,8 +38,8 @@ function render(text, textColor = 'black', backgroundColor = 'white', fontSize =
     measurements.actualBoundingBoxAscent + TOP_PADDING_IN_PIXELS,
   );
 
-  const bufferOptions = { compressionLevel: 9, filters: canvas.PNG_FILTER_NONE };
-  const buffer = canvas.toBuffer('image/png', bufferOptions);
+  const bufferOptions: Canvas.PngConfig = { compressionLevel: 9, filters: canvas.PNG_FILTER_NONE };
+  const buffer = canvas.toBuffer("image/png", bufferOptions);
   return buffer;
 }
 

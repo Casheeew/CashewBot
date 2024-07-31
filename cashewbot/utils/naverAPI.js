@@ -23,7 +23,8 @@ class API {
 }
 
 async function searchjpToKr(uri) {
-    const browser = await puppeteer.launch({ headless: "new" });
+    const browser = await puppeteer.launch({ executablePath: process.env.NODE_ENV === "production" ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(),
+        headless: "new" });
     const page = await browser.newPage();
     await page.goto(uri, {
         waitUntil: 'networkidle0'

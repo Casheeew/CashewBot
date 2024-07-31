@@ -1,5 +1,5 @@
-const { EmbedBuilder } = require('discord.js');
-const { updateOrCreate, processMessage, getPrefixes, GuildData } = require('./commandsHelper.js');
+import { EmbedBuilder } from 'discord.js';
+import { updateOrCreate, processMessage, getPrefixes, GuildData } from './commandsHelper.js';
 
 const prefixHandler = async function (msg, prefix) {
   const prefixList = await JSON.parse(await getPrefixes(msg.guild))
@@ -48,4 +48,4 @@ const prefixHandler = async function (msg, prefix) {
   msg.channel.send({ embeds: [embed] });
 }
 
-exports.prefixHandler = prefixHandler
+export default prefixHandler;

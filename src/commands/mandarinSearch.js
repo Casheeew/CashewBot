@@ -2,6 +2,10 @@ const { returnLookUpWordEmbed } = require('../commandPages/mandarinSearchPage.js
 const { EmbedBuilder } = require('discord.js');
 const { processMessage } = require('./commandsHelper.js');
 
+import { returnLookUpWordEmbed } from '../commandPages/mandarinSearchPage.js';
+import { EmbedBuilder } from 'discord.js';
+import { processMessage } from './commandsHelper.js';
+
 class ReactionCommand {
   constructor(name, id, run) {
     this.name = name;

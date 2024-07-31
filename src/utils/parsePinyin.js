@@ -43,7 +43,7 @@ const getSyllables = function (accentList, pinyin) {
     syllables.push(remaining)
     return syllables;
 }
-const placeTone = function (numberedPinyin) {
+export const placeTone = function (numberedPinyin) {
 
     var accentKeys = numberedPinyin.match(/[0-9]/g);
     if (!accentKeys) {
@@ -71,4 +71,3 @@ const placeTone = function (numberedPinyin) {
     return `${results.join('')}`
 }
 
-exports.placeTone = placeTone;

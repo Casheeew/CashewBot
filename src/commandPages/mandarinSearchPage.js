@@ -1,6 +1,6 @@
-const chineseLexicon = require('chinese-lexicon');
-const { EmbedBuilder } = require('discord.js');
-const { isAlpha, isEmpty } = require('./pageHelper.js');
+// const chineseLexicon = require('chinese-lexicon');
+import { EmbedBuilder } from 'discord.js';
+import { isAlpha, isEmpty } from './pageHelper.js';
 
 class Word {
     constructor(data) {

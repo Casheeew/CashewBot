@@ -1,6 +1,7 @@
-const aboutPageEmbed = require('../commandPages/aboutPage');
+import aboutPageEmbed from '../commandPages/aboutPage.js';
+
 const aboutPage = function (msg) {
     msg.channel.send({ embeds: [aboutPageEmbed.aboutPageEmbed] });
 }
 
-exports.aboutPage = aboutPage;
+export default aboutPage;

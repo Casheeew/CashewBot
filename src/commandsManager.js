@@ -1,13 +1,12 @@
-const { initiateQuiz } = require('./commands/quiz.js');
-// const { mandarinSearch } = require('./commands/mandarinSearch.js');
-const { convertKyujitaiShinjitai } = require('./commands/kyujitai.js');
-const { helpPage } = require('./commands/help.js');
-const { aboutPage } = require('./commands/about.js');
-const { prefixHandler } = require('./commands/prefix.js');
-const { convertAccentedPinyin } = require('./commands/cvpinyin.js');
-const { getPrefixes } = require('./commands/commandsHelper.js');
-const { jpToKr } = require('./commands/jpToKr.js');
-
+import initiateQuiz from './commands/quiz.js';
+// import { mandarinSearch } from './commands/mandarinSearch.js';
+import convertKyujitaiShinjitai from './commands/kyujitai.js';
+import helpPage from './commands/help.js';
+import aboutPage from './commands/about.js';
+import prefixHandler from './commands/prefix.js';
+import convertAccentedPinyin from './commands/cvpinyin.js';
+import { getPrefixes } from './commands/commandsHelper.js';
+import jpToKr from './commands/jpToKr.js';
 class Command {
   constructor(name, run) {
     this.name = name,
@@ -55,5 +54,4 @@ const switchBetweenCommands = async msg => {
   }
 };
 
-exports.switchBetweenCommands = switchBetweenCommands
-// 0x70FA70 Grassy Green
+export default switchBetweenCommands;

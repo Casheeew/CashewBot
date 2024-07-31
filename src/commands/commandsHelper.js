@@ -1,6 +1,6 @@
 /* setup database */
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize(process.env.DB_URL);
+import { Sequelize } from "sequelize";
+export const sequelize = new Sequelize(process.env.DB_URL);
 
 sequelize
   .authenticate()
@@ -11,7 +11,7 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 
-const UserData = sequelize.define('userData', {
+export const UserData = sequelize.define('userData', {
   userId: {
     type: Sequelize.STRING,
     unique: true,
@@ -30,7 +30,7 @@ const UserData = sequelize.define('userData', {
   }
 });
 
-const GuildData = sequelize.define('guildData', {
+export const GuildData = sequelize.define('guildData', {
   guildId: {
     type: Sequelize.STRING,
     unique: true,
@@ -44,7 +44,7 @@ const GuildData = sequelize.define('guildData', {
 });
 
 // Update or create a new SQL model
-async function updateOrCreate(model, where, newItem) {
+export async function updateOrCreate(model, where, newItem) {
   const foundItem = await model.findOne({ where });
   if (!foundItem) {
     const item = await model.create(newItem)
@@ -55,7 +55,7 @@ async function updateOrCreate(model, where, newItem) {
 };
 
 // Trim message to get rid of command prefix
-const processMessage = (msg, parseArgs=false) => {
+export const processMessage = (msg, parseArgs=false) => {
   index = msg.content.indexOf(' ');
   if (index == -1) {
     return {
@@ -77,7 +77,8 @@ const processMessage = (msg, parseArgs=false) => {
   };
 };
 
-const getPrefixes = async function (guild) {
+export const getPrefixes = async function (guild) {
+  let prefix;
   const guildData = await GuildData.findOne({ where: { guildId: guild.id } });
   if (guildData) {
     prefix = await guildData.get('prefix');
@@ -87,11 +88,3 @@ const getPrefixes = async function (guild) {
   return prefix;
 }
 
-module.exports = {
-  UserData,
-  GuildData,
-  sequelize,
-  updateOrCreate,
-  processMessage,
-  getPrefixes,
-}

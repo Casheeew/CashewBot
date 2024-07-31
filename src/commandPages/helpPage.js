@@ -1,5 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
-
+import { EmbedBuilder } from 'discord.js';
 
 const helpPageEmbed = function (displayedPrefix) {
 
@@ -41,5 +40,4 @@ const helpPageEmbed = function (displayedPrefix) {
     return embed;
 }
 
-exports.helpPageEmbed = helpPageEmbed;
-
+export default helpPageEmbed;

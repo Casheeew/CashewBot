@@ -1,6 +1,6 @@
-const { placeTone } = require('../utils/parsePinyin.js');
-const { processMessage } = require('./commandsHelper.js');
-const { EmbedBuilder } = require('discord.js');
+import { placeTone } from '../utils/parsePinyin.js';
+import { processMessage } from './commandsHelper.js';
+import { EmbedBuilder } from 'discord.js';
 
 const convertAccentedPinyin = function (msg, prefix) {
     const processedMessage = processMessage(msg);
@@ -25,4 +25,4 @@ const convertAccentedPinyin = function (msg, prefix) {
     msg.channel.send(placeTone(message));
 }
 
-exports.convertAccentedPinyin = convertAccentedPinyin;
+export default convertAccentedPinyin;

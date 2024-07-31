@@ -1,6 +1,6 @@
 // 5-box Leitner system
 
-class quizScheduler {
+class QuizScheduler {
     constructor (deckSize) {
         this.deckSize = deckSize;
         this.boxes = [];
@@ -13,6 +13,4 @@ class quizScheduler {
 
 }
 
-module.exports = {
-    quizScheduler,
-}
+export default QuizScheduler;

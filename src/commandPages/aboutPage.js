@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
+import { EmbedBuilder } from "discord.js";
 const support_server_url = process.env.support_server_url;
 
 const aboutPageEmbed = new EmbedBuilder()
@@ -12,5 +12,4 @@ const aboutPageEmbed = new EmbedBuilder()
         `Make suggestions, report bugs, ask for help here: [Support server](${support_server_url})\n\n**叉焼** uses data from: \n- CC-CEDICT`
     )
 
-exports.aboutPageEmbed = aboutPageEmbed;
-
+export default aboutPageEmbed;

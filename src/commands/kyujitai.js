@@ -1,6 +1,6 @@
-const Kyujitai = require('kyujitai');
-const { EmbedBuilder } = require('discord.js');
-const { processMessage } = require('./commandsHelper.js');
+import Kyujitai from 'kyujitai';
+import { EmbedBuilder } from 'discord.js';
+import { processMessage } from './commandsHelper.js';
 
 const convertKyujitaiShinjitai = async (msg, prefix) => {
   const processedMessage = processMessage(msg);
@@ -33,4 +33,4 @@ const convertKyujitaiShinjitai = async (msg, prefix) => {
   });
 };
 
-exports.convertKyujitaiShinjitai = convertKyujitaiShinjitai;
+export default convertKyujitaiShinjitai;

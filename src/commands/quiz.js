@@ -1,11 +1,10 @@
-const { processMessage, getPrefixes, UserData, updateOrCreate } = require('./commandsHelper.js');
-const renderText = require('../utils/renderText.js');
-const { AttachmentBuilder } = require('discord.js');
-const { getEmbedForQuiz } = require('../commandPages/quizPage.js');
-const { placeTone } = require('../utils/parsePinyin.js');
-const { quizScheduler } = require('../quiz/quizScheduler.js');
-const { shuffle } = require('../quiz/quizHelper.js');
-const { Op } = require('sequelize');
+import { processMessage, getPrefixes, UserData, updateOrCreate } from './commandsHelper.js';
+import renderText from '../utils/renderText.js';
+import { AttachmentBuilder } from 'discord.js';
+import getEmbedForQuiz from '../commandPages/quizPage.js';
+import { placeTone } from '../utils/parsePinyin.js';
+import QuizScheduler from '../quiz/quizScheduler.js';
+import { shuffle } from '../quiz/quizHelper.js';
 
 class Save {
   constructor(user, save, model) {
@@ -83,7 +82,7 @@ const initiateQuiz = async function (msg) {
   const cards = shuffle(deck.cards);
   const embeds = getEmbedForQuiz(deck);
 
-  const schedule = new quizScheduler(cards.length);
+  const schedule = new QuizScheduler(cards.length);
 
   var quizRunning = true;
   msg.channel.send({ embeds: [embeds.startQuizEmbed] })
@@ -184,5 +183,4 @@ const initiateQuiz = async function (msg) {
   }
 }
 
-exports.initiateQuiz = initiateQuiz
-
+export default initiateQuiz;

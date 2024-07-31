@@ -1,5 +1,4 @@
-const Canvas = require('canvas');
-const path = require('path');
+import Canvas from 'canvas';
 
 const TOP_PADDING_IN_PIXELS = 6;
 const BOTTOM_PADDING_IN_PIXELS = 6;
@@ -44,6 +43,4 @@ function render(text, textColor = 'black', backgroundColor = 'white', fontSize =
   return buffer;
 }
 
-module.exports = {
-  render,
-};
+export default render;

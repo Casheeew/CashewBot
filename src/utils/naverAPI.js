@@ -1,6 +1,5 @@
-const puppeteer = require('puppeteer');
-const cheerio = require('cheerio');
-
+import puppeteer from "puppeteer";
+import cheerio from "cheerio";
 class API {
     async jpToKr(phrase) {
         const uri = 'https://ja.dict.naver.com/#/search?query=' + encodeURIComponent(phrase);
@@ -43,4 +42,4 @@ async function searchjpToKr(uri) {
     return meanings
 }
 
-module.exports = API
+export default API;

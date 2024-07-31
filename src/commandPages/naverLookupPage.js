@@ -1,5 +1,5 @@
-const NaverAPI = require('../utils/naverAPI');
-const { EmbedBuilder } = require('discord.js');
+import NaverAPI from '../utils/naverAPI.js';
+import { EmbedBuilder } from 'discord.js';
 
 const naver = new NaverAPI();
 
@@ -21,4 +21,4 @@ const naverLookupEmbed = async function(message) {
     return embed;
 }
 
-exports.naverLookupEmbed = naverLookupEmbed;
+export default naverLookupEmbed;

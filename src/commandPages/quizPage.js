@@ -1,5 +1,5 @@
-const { EmbedBuilder } = require('discord.js');
-const { Deck } = require('../quiz/quizHelper.js')
+import { EmbedBuilder } from 'discord.js';
+import { Deck } from '../quiz/quizHelper.js';
 
 const startQuizEmbed = function (deckInfo) {
     const scoreLimit = null || 10; // Will change
@@ -70,7 +70,7 @@ const stopQuizEmbed = function (deck, userid, pointsRack) {
     return embed;
 }
 
-const getEmbedForQuiz = function (deck) {
+export const getEmbedForQuiz = function (deck) {
     const deckInfo = new Deck(deck);
 
     return {
@@ -83,6 +83,5 @@ const getEmbedForQuiz = function (deck) {
 }
 
 
-module.exports = {
-    getEmbedForQuiz,
-}
+export default getEmbedForQuiz;
+

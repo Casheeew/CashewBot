@@ -1,5 +1,1 @@
-const isAlpha = str => /^[a-zA-Z]+$/.test(str);
-
-module.exports = {
-    isAlpha,
-};
+export const isAlpha = str => /^[a-zA-Z]+$/.test(str);

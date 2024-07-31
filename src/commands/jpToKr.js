@@ -1,6 +1,6 @@
-const { naverLookupEmbed } = require('../commandPages/naverLookupPage')
-const { processMessage } = require('./commandsHelper.js');
-const { EmbedBuilder } = require('discord.js');
+import naverLookupEmbed from '../commandPages/naverLookupPage.js';
+import { processMessage } from './commandsHelper.js';
+import { EmbedBuilder } from 'discord.js';
 
 const searchResult = async function (msg, prefix) {
     const processedMessage = processMessage(msg);
@@ -19,4 +19,4 @@ const searchResult = async function (msg, prefix) {
     await msg.channel.send({ embeds: [embed] });
 }
 
-exports.jpToKr = searchResult;
+export default searchResult;

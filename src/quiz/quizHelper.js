@@ -1,4 +1,4 @@
-class Deck {
+export class Deck {
     constructor(deck) {
         this.deck = deck;
     };
@@ -9,7 +9,7 @@ class Deck {
     get cards() { return this.deck.cards };
 }
 
-function shuffle(arr) {
+export function shuffle(arr) {
     let currentIndex = arr.length,  randomIndex;
   
     // While there remain elements to shuffle.
@@ -26,9 +26,3 @@ function shuffle(arr) {
   
     return arr;
   }
-
-module.exports = {
-    Deck,
-    shuffle
-}
-

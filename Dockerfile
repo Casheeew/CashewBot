@@ -6,7 +6,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 WORKDIR /home/pptruser/app
 
 COPY package*.json ./
-
+RUN dir -s
 RUN npm ci
 COPY . .
 CMD ["node", "cashewbot/main.js"]

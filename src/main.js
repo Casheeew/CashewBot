@@ -2,8 +2,11 @@ const { Client, GatewayIntentBits, Partials, channelLink } = require('discord.js
 const { switchBetweenCommands } = require('./commandsManager.js');
 const { sequelize } = require('./commands/commandsHelper.js')
 const dotenv = require('dotenv')
+const express = require('express')
 
 dotenv.config()
+
+/* Init CashewBot */
 
 // Create a new client instance
 const client = new Client({
@@ -35,3 +38,16 @@ client.once('ready', c => {
 
 // Login to Discord with your client's token
 client.login(process.env.BOT_TOKEN);
+
+
+/* Init CashewBot Web */
+const app = express()
+const port = process.env.PORT || 4000;
+
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
+
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`)
+})

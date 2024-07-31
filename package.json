@@ -2,9 +2,9 @@
   "name": "cashewbot",
   "version": "1.0.0",
   "description": "",
-  "main": "cashewbot/main.js",
+  "main": "src/main.js",
   "scripts": {
-    "start": "node cashewbot/main.js",
+    "start": "node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

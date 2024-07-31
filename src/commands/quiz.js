@@ -3,7 +3,7 @@ const renderText = require('../utils/renderText.js');
 const { AttachmentBuilder } = require('discord.js');
 const { getEmbedForQuiz } = require('../commandPages/quizPage.js');
 const { placeTone } = require('../utils/parsePinyin.js');
-const { quizScheduler } = require('../quiz/quizScheduler');
+const { quizScheduler } = require('../quiz/quizScheduler.js');
 const { shuffle } = require('../quiz/quizHelper.js');
 const { Op } = require('sequelize');
 

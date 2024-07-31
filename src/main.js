@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Partials, channelLink } = require('discord.js');
-const { switchBetweenCommands } = require('../cashewbot/commandsManager.js');
+const { switchBetweenCommands } = require('./commandsManager.js');
 const { sequelize } = require('./commands/commandsHelper.js')
 const dotenv = require('dotenv')
 

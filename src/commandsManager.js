@@ -29,8 +29,8 @@ const jpJpCommand = new Command('jpjp', async (msg, prefix) => {
 })
 const commands = {
   'cvpinyin': convertPinyinCommand.run,
-  's': searchCommand.run,
-  'search': searchCommand.run,
+  // 's': searchCommand.run,
+  // 'search': searchCommand.run,
   'k': kyujiCommand.run,
   'kyuji': kyujiCommand.run,
   'h': helpCommand.run,

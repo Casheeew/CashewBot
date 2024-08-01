@@ -1,9 +1,13 @@
+// const chineseLexicon = require('chinese-lexicon');
+import { EmbedBuilder } from 'discord.js';
 const chineseLexicon = require('chinese-lexicon');
-const { EmbedBuilder } = require('discord.js');
-const { isAlpha, isEmpty } = require('./pageHelper.js');
+
+export const isAlpha = (str: string) => /^[a-zA-Z]+$/.test(str);
 
 class Word {
-    constructor(data) {
+    data: any;
+
+    constructor(data: any) {
         this.data = data;
     }
 
@@ -15,18 +19,21 @@ class Word {
 
 }
 
-const returnLookUpWordEmbed = async function (message, startIdx) {
+const returnLookUpWordEmbed = async function (message: string, startIdx: number) {
 
     const embed = new EmbedBuilder().setColor(0x0099FF); // Sky Blue
+    let wordInfo;
 
     // If the searched word is alphabetical, search the matching chinese entries
     if (isAlpha(message)) {
-        var wordInfo = await chineseLexicon.search(message);
+        wordInfo = await chineseLexicon.search(message);
     } else {
-        var wordInfo = await chineseLexicon.getEntries(message);
+        wordInfo = await chineseLexicon.getEntries(message);
     }
 
-    entriesCount = wordInfo.length
+    // todo
+    // const wordInfo = ['hi'];
+    const entriesCount = wordInfo.length;
     if (entriesCount === 0) {
         embed.setTitle(`Search`);
         embed.setDescription(`I couldn\'t find any results for **${message}**`);
@@ -34,7 +41,7 @@ const returnLookUpWordEmbed = async function (message, startIdx) {
     }
 
     for (let i = startIdx; i < Math.min(wordInfo.length, startIdx + 4); i++) {
-        word = new Word(wordInfo[i]);
+        const word = new Word(wordInfo[i]);
         embed.addFields({
             name: `${word.simp} | ${word.trad}`,
             value: `\`HSK Level: ${word.stats.hskLevel}\`\n(${word.pinyin}) *${word.definitions.join(', ')}*`
@@ -50,4 +57,4 @@ const returnLookUpWordEmbed = async function (message, startIdx) {
     return { embed, entriesCount };
 }
 
-exports.returnLookUpWordEmbed = returnLookUpWordEmbed;
+export default returnLookUpWordEmbed;

@@ -1,4 +1,4 @@
-const ACCENTED = {
+const ACCENTED: any = {
     '1': { 'a': '\u0101', 'e': '\u0113', 'i': '\u012B', 'o': '\u014D', 'u': '\u016B', 'ü': '\u01D6' },
     '2': { 'a': '\u00E1', 'e': '\u00E9', 'i': '\u00ED', 'o': '\u00F3', 'u': '\u00FA', 'ü': '\u01D8' },
     '3': { 'a': '\u01CE', 'e': '\u011B', 'i': '\u01D0', 'o': '\u01D2', 'u': '\u01D4', 'ü': '\u01DA' },
@@ -6,7 +6,7 @@ const ACCENTED = {
     '5': { 'a': 'a', 'e': 'e', 'i': 'i', 'o': 'o', 'u': 'u', 'ü': 'ü' },
 };
 
-const getPosition = function (token) {
+const getPosition = function (token: string) {
     if (token.length === 1) {
         return 0;
     }
@@ -30,8 +30,8 @@ const getPosition = function (token) {
     }
 }
 
-const getSyllables = function (accentList, pinyin) {
-    var syllables = [];
+const getSyllables = function (accentList: RegExpMatchArray, pinyin: string) {
+    var syllables: string[] = [];
     var remaining = pinyin;
     for (let i of accentList) {
         let idx = remaining.indexOf(i);
@@ -43,7 +43,7 @@ const getSyllables = function (accentList, pinyin) {
     syllables.push(remaining)
     return syllables;
 }
-const placeTone = function (numberedPinyin) {
+export const placeTone = function (numberedPinyin: string) {
 
     var accentKeys = numberedPinyin.match(/[0-9]/g);
     if (!accentKeys) {
@@ -51,7 +51,7 @@ const placeTone = function (numberedPinyin) {
     }
     const syllables = getSyllables(accentKeys, numberedPinyin);
 
-    const results = [];
+    const results: string[] = [];
     for (let syllable of syllables) {
         let toneIdx = syllable.charAt(syllable.length - 1);
         let accentPosition = getPosition(syllable);
@@ -71,4 +71,3 @@ const placeTone = function (numberedPinyin) {
     return `${results.join('')}`
 }
 
-exports.placeTone = placeTone;

@@ -11,7 +11,7 @@ const commandsMap = new Map<string, Command>();
 
 for (const file of readdirSync(commandsDir)) {
     if (!file.endsWith(".js") && !file.endsWith(".ts")) continue;
-    if (file.endsWith("quiz.ts")) continue;
+    if (file.endsWith("quiz.js") || file.endsWith("quiz.ts")) continue;
 
     const filePath = path.join(commandsDir, file);
     const command = (require(filePath) as { default: Command }).default;

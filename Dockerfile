@@ -8,4 +8,4 @@ WORKDIR /home/pptruser/app
 COPY package*.json ./
 RUN npm ci
 COPY . .
-CMD ["node", "src/main.js"]
+CMD ["npm", "run", "start"]

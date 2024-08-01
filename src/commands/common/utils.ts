@@ -52,35 +52,13 @@ export const GuildData = sequelize.define("guildData", {
 // Update or create a new SQL model
 export async function updateOrCreate(model: any, where: any, newItem: any) {
   const foundItem = await model.findOne({ where });
-  if (!foundItem) {
+  if (foundItem === null) {
     const item = await model.create(newItem);
     return { item, created: true };
   }
   const item = await model.update(newItem, { where });
   return { item, created: false };
 }
-
-// Trim message to get rid of command prefix
-export const processMessage = (msg: Message, parseArgs = false) => {
-  let index = msg.content.indexOf(" ");
-  if (index == -1) {
-    return {
-      value: false,
-    };
-  }
-  if (parseArgs) {
-    let args = msg.content.split(" ");
-    const prefix = args.shift();
-
-    return {
-      value: args,
-      prefix,
-    };
-  }
-  return {
-    value: msg.content.slice(index + 1),
-  };
-};
 
 export const getPrefixes = async function (guild: Guild) {
   let prefix: string;

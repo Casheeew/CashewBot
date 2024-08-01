@@ -1,6 +1,6 @@
 // const chineseLexicon = require('chinese-lexicon');
-import { EmbedBuilder, Message } from 'discord.js';
-// import chineseLexicon from 'chinese-lexicon';
+import { EmbedBuilder } from 'discord.js';
+const chineseLexicon = require('chinese-lexicon');
 
 export const isAlpha = (str: string) => /^[a-zA-Z]+$/.test(str);
 
@@ -22,16 +22,17 @@ class Word {
 const returnLookUpWordEmbed = async function (message: string, startIdx: number) {
 
     const embed = new EmbedBuilder().setColor(0x0099FF); // Sky Blue
+    let wordInfo;
 
     // If the searched word is alphabetical, search the matching chinese entries
     if (isAlpha(message)) {
-        // var wordInfo = await chineseLexicon.search(message);
+        wordInfo = await chineseLexicon.search(message);
     } else {
-        // var wordInfo = await chineseLexicon.getEntries(message);
+        wordInfo = await chineseLexicon.getEntries(message);
     }
-    
+
     // todo
-    const wordInfo = ['hi'];
+    // const wordInfo = ['hi'];
     const entriesCount = wordInfo.length;
     if (entriesCount === 0) {
         embed.setTitle(`Search`);

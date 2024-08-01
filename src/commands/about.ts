@@ -1,5 +1,5 @@
 import { EmbedBuilder } from "discord.js";
-import { Command } from "./types";
+import type { Command } from "./common/types";
 const support_url = process.env.SUPPORT_URL;
 
 const embed = new EmbedBuilder()

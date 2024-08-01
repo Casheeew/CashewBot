@@ -1,78 +1,46 @@
 import returnLookupWordEmbed from "./search/mandarinSearchPage";
 import { EmbedBuilder, Message, MessageReaction, User } from "discord.js";
-import { processMessage } from "./utils/commandsHelper";
+import { Command } from "./common/types";
 
 type ReactionCommand = {
   name: string;
   id: string;
 };
 
-const openBook: ReactionCommand = {
-  name: "LeftArrow",
-  id: "1015443770113806491",
-};
-const arrowLeft: ReactionCommand = {
-  name: "LeftArrow",
-  id: "1015443770113806491",
-};
-const arrowRight: ReactionCommand = {
-  name: "RightArrow",
-  id: "1015443768012455976",
-};
+const openBook: ReactionCommand = { name: "OpenBook", id: "1015246188359979108" };
+const arrowLeft: ReactionCommand = { name: "LeftArrow", id: "1015443770113806491" };
+const arrowRight: ReactionCommand = { name: "RightArrow", id: "1015443768012455976" };
 
 const lookup = async function (query: string, pageIdx: number, prefix: string) {
-  if (!query) {
-    const embed = new EmbedBuilder()
-      .setColor(0x0099ff) // Sky Blue
-      .setAuthor({
-        name: "叉焼",
-        iconURL: "https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg",
-      })
-      .setTitle("Mandarin Search")
-      .setDescription(
-        `Say **${prefix}s** or **${prefix}search** to search a Mandarin or English word!\n\nexample: **${prefix}s 蔀**`
-      );
-
-    return { embed, maxPageIdx: -1, help: true };
-  }
   const result = await returnLookupWordEmbed(query, pageIdx * 4);
+  const maxPageIdx = Math.floor(result.entriesCount / 4);
+  
+  result.embed.setDescription(`Page ${pageIdx + 1} of ${maxPageIdx + 1}`);
+
   return {
     embed: result.embed,
-    maxPageIdx: Math.floor(result.entriesCount / 4),
+    maxPageIdx,
     entriesCount: result.entriesCount,
-    help: false,
   }; // Each page has max. 4 entries
 };
 
-const mandarinSearch = async function (msg: Message, prefix: string) {
-  const processedMessage = processMessage(msg);
-  // todo
-  var query = processedMessage.value as string;
-  var pageIdx = 0;
-
-  var searchResult = await lookup(query, pageIdx, prefix);
+const exec = async function (msg: Message, prefix: string, body: string) {
+  let pageIdx = 0;
+  let query = body;
+  let searchResult = await lookup(body, pageIdx, prefix);
 
   // While no entries found, return entries from a smaller substring
-  while (
-    searchResult.entriesCount == 0 &&
-    query.length > 1 &&
-    !searchResult.help
-  ) {
+  while (searchResult.entriesCount == 0 && query.length > 1) {
     query = query.slice(0, query.length - 1);
     searchResult = await lookup(query, pageIdx, prefix);
   }
 
   // If no entries found at all, return the original lookup
-  if (
-    searchResult.entriesCount == 0 &&
-    query.length == 1 &&
-    !searchResult.help
-  ) {
-    searchResult = await lookup(processedMessage.value as string, pageIdx, prefix);
+  if ( searchResult.entriesCount == 0 && query.length == 1  ) {
+    searchResult = await lookup(query, pageIdx, prefix);
   }
 
-  const result = await msg.channel.send({ embeds: [await searchResult.embed] });
-  if (searchResult.help) return;
+  const result = await msg.channel.send({ embeds: [searchResult.embed] });
 
   const switchBetweeenReactions = async function (reaction: MessageReaction) {
     switch (reaction.emoji.name) {
@@ -81,12 +49,12 @@ const mandarinSearch = async function (msg: Message, prefix: string) {
       case arrowLeft.name:
         if (pageIdx > 0) pageIdx -= 1;
         searchResult = await lookup(query, pageIdx, prefix);
-        result.edit({ embeds: [await searchResult.embed] });
+        result.edit({ embeds: [searchResult.embed] });
         break;
       case arrowRight.name:
         if (pageIdx < searchResult.maxPageIdx) pageIdx += 1;
         searchResult = await lookup(query, pageIdx, prefix);
-        result.edit({ embeds: [await searchResult.embed] });
+        result.edit({ embeds: [searchResult.embed] });
         break;
     }
   };
@@ -120,4 +88,22 @@ const mandarinSearch = async function (msg: Message, prefix: string) {
     switchBetweeenReactions(reaction);
   });
 };
-exports.mandarinSearch = mandarinSearch;
+
+const command: Command = {
+  id: 'search',
+  names: ['search', 's'],
+  description: 'Search for a Chinese or English word on CC-CEDICT',
+  exec,
+  getHelp: (prefix) => new EmbedBuilder()
+    .setColor(0x0099ff) // Sky Blue
+    .setAuthor({
+      name: "叉焼",
+      iconURL: "https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg",
+    })
+    .setTitle("Mandarin Search")
+    .setDescription(
+      `Say **${prefix}s** or **${prefix}search** to search a Mandarin or English word!\n\nexample: **${prefix}s 蔀**`
+    )
+}
+
+export default command;

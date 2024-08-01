@@ -1,6 +1,6 @@
 import type { Awaitable, EmbedBuilder, Message } from "discord.js";
 
-type Execute = (msg: Message, prefix: string) => Awaitable<void>;
+type Execute = (msg: Message, prefix: string, body: string, args: string[]) => Awaitable<void>;
 
 export type Command = {
   id: string;
@@ -16,6 +16,10 @@ export type Command = {
    * The function that is called when this command is run.
    */
   exec: Execute;
+  /**
+   * A custom help embed that is sent when not enough arguments are passed.
+   */
+  getHelp?: (prefix: string, message: Message) => Awaitable<EmbedBuilder>;
   /**
    * Cooldown of this command in seconds.
    */

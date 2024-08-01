@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { Client, GatewayIntentBits, Partials } from "discord.js";
-import executeCommand from "./commandsManager";
-import { sequelize } from "./commands/utils/commandsHelper";
+import executeCommand from "./commands";
+import { sequelize } from "./commands/common/utils";
 import express from "express";
 
 /* Init CashewBot */

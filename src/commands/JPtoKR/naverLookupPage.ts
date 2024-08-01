@@ -1,9 +1,9 @@
-import NaverAPI from '../utils/naverAPI';
+import NaverAPI from '../../utils/naverAPI';
 import { EmbedBuilder, Message } from 'discord.js';
 
 const naver = new NaverAPI();
 
-const naverLookupEmbed = async function(message: string) {
+const naverLookupEmbed = async function (message: string) {
     const meanings = await naver.jpToKr(message) as string[] | undefined;
     if (meanings === undefined) return;
     let idx = 0;

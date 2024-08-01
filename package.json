@@ -23,5 +23,8 @@
     "puppeteer": "^22.14.0",
     "sequelize-typescript": "^2.1.6",
     "undici": "^5.10.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
   }
 }

@@ -11,7 +11,7 @@ const FONT_PATH = 'src/assets/fonts/noto-sans/NotoSansSC/NotoSansSC-Regular.otf'
 
 Canvas.registerFont(FONT_PATH, { family: FONT_ALIAS });
 
-function render(text, textColor = 'black', backgroundColor = 'white', fontSize = 96) {
+function render(text: string, textColor = 'black', backgroundColor = 'white', fontSize = 96) {
   const canvas = Canvas.createCanvas(0, 0);
   const ctx = canvas.getContext('2d');
   ctx.font = `${fontSize}px ${FONT_ALIAS}`;

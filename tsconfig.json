@@ -5,6 +5,8 @@
     "rootDir": "./src",
     "module": "CommonJS",  
     "outDir": "./dist",                              
+    "baseUrl": "./src",                            
+    "resolveJsonModule": true,
     "esModuleInterop": true,                                 
     "forceConsistentCasingInFileNames": true,
     "strict": true,

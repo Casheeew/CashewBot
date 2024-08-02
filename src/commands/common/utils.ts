@@ -49,6 +49,53 @@ export const GuildData = sequelize.define("guildData", {
   },
 });
 
+export const CEDICT = sequelize.define("CEDICT", {
+  simp: DataType.STRING,
+  trad: DataType.STRING,
+  definitions: DataType.ARRAY(DataType.TEXT),
+  glossary: DataType.TEXT,
+  pinyin: DataType.STRING,
+  searchablePinyin: DataType.STRING,
+  pinyinTones: DataType.STRING,
+  statistics: DataType.JSON,
+  boost: DataType.DOUBLE,
+  usedAsComponentIn: DataType.JSON,
+})
+
+export type DictionaryEntry = {
+  simp: string;
+  trad: string;
+  definitions: string[];
+  glossary: string;
+  pinyin: string;
+  searchablePinyin: string;
+  pinyinTones: string;
+  statistics: {
+    hskLevel: number;
+    topWords: object[];
+    movieWordCount?: number;
+    movieWordCountPercent?: number;
+    movieWordRank?: number;
+    movieWordContexts?: number;
+    movieWordContextsPercent?: number;
+    bookWordCount?: number;
+    bookWordCountPercent?: number;
+    bookWordRank?: number;
+    movieCharCount?: number;
+    movieCharCountPercent?: number;
+    movieCharRank?: number;
+    movieCharContexts?: number;
+    movieCharContextsPercent?: number;
+    bookCharCount?: number;
+    bookCharCountPercent?: number;
+    bookCharRank?: number;
+    pinyinFrequency?: number;
+  };
+  boost: number;
+  relevance?: number;
+  usedAsComponentIn: object;
+};
+
 // Update or create a new SQL model
 export async function updateOrCreate(model: any, where: any, newItem: any) {
   const foundItem = await model.findOne({ where });

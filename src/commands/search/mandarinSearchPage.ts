@@ -78,18 +78,14 @@ async function searchEnglish(term: string, limit = 100) {
     const beforeFindAll = performance.now();
     const matchingEntries: any = await CEDICT.findAll({
         where: {
-            [Op.or]: [
-                {
-                    glossary: {
-                        [Op.substring]: `${term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&').trim()}`,
-                    }
-                },
-                // {
-                //     searchablePinyin: {
-                //         [Op.startsWith]: `${term}`
-                //     }
-                // },
-            ]
+            glossary: {
+                [Op.substring]: `${term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&').trim()}`,
+            }
+            // {
+            //     searchablePinyin: {
+            //         [Op.startsWith]: `${term}`
+            //     }
+            // },
         }
     })
     const afterFindAll = performance.now();

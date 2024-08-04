@@ -1,6 +1,6 @@
 // const chineseLexicon = require('chinese-lexicon');
 import { EmbedBuilder } from 'discord.js';
-import { CEDICT } from 'database';
+import { CEDICT } from '../../database';
 import { DictionaryEntry } from '../common/types';
 import { Op } from 'sequelize';
 

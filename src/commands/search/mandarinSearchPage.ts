@@ -1,69 +1,21 @@
 // const chineseLexicon = require('chinese-lexicon');
 import { EmbedBuilder } from 'discord.js';
-import { CEDICT } from 'database';
+import { CEDICT } from '../../database';
 import { DictionaryEntry } from '../common/types';
 import { Op } from 'sequelize';
 
-export const isAlpha = (str: string) => /^[a-zA-Z]+$/.test(str);
+const isAlpha = (str: string) => /.*[a-zA-Z]+.*/.test(str);
+const isPinyin = (str: string) => /.*[ĀāÁáǍǎÀàĒēÉéĚěÈèĪīÍíǏǐÌìŌōÓóǑǒÒòŪūÚúǓǔÙùÜüǗǘǙǚǛǜ«»⸢⸣⸤⸥]+.*/.test(str);
+const isNumbered = (str: string) => /.*[a-zA-Z]+[1-9].*/.test(str);
 
-function isWholeWordMatch(searchOnString: string, searchText: string) {
-    if (!searchOnString) return false;
-    searchText = searchText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-    return searchOnString.match(new RegExp("\\b" + searchText + "\\b", "i")) != null;
-}
-
-function isSubstringMatch(text: string, term: string) {
-    if (!text) return false;
-    return text.includes(term);
-}
-
-async function search(term: string, limit = 100) {
-    term = term.toLowerCase();
-
-    console.log(`\\b${term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&').trim()}\\b`);
-
-    const beforeFindAll = performance.now();
-    const matchingEntries: any = await CEDICT.findAll({
-        where: {
-            [Op.or]: [
-                {
-                    glossary: {
-                        [Op.iRegexp]: `${term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&').trim()}`,
-                    }
-                },
-                {
-                    simp: {
-                        [Op.iLike]: `${term}%`,
-                    }
-                },
-                {
-                    trad: {
-                        [Op.iLike]: `${term}%`,
-                    }
-                },
-                {
-                    pinyinTones: {
-                        [Op.iLike]: `${term}%`,
-                    }
-                },
-                {
-                    pinyin: {
-                        [Op.iLike]: `${term}%`
-                    }
-                },
-            ]
-        }
-    })
-    const afterFindAll = performance.now();
-    console.log(`findAll: ${afterFindAll - beforeFindAll}`);
-
-    return matchingEntries
+function processMatches(entries: DictionaryEntry[], term: string, limit: number) {
+    return entries
         .map((entry: DictionaryEntry) => {
-            let { definitions, simp, trad, searchablePinyin, pinyin, pinyinTones } = entry;
+            const { definitions, simp, trad, searchablePinyin, pinyin, pinyinTones } = entry;
             let relevance = 1;
-            let definitionsCount = definitions.length;
+            const definitionsCount = definitions.length;
             for (let i = 0; i < definitionsCount; i++) {
-                let definition = definitions[i];
+                const definition = definitions[i];
                 if (isWholeWordMatch(definition, term)) {
                     relevance += 10 / (i + 1);
                 }
@@ -82,6 +34,102 @@ async function search(term: string, limit = 100) {
             return (b.boost * b.relevance) - (a.boost * a.relevance)
         })
         .slice(0, limit);
+}
+
+function isWholeWordMatch(searchOnString: string, searchText: string) {
+    if (!searchOnString) return false;
+    searchText = searchText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    return searchOnString.match(new RegExp("\\b" + searchText + "\\b", "i")) != null;
+}
+
+function isSubstringMatch(text: string, term: string) {
+    if (!text) return false;
+    return text.includes(term);
+}
+
+async function search(term: string, limit = 100) {
+
+    const beforeFindAll = performance.now();
+    const matchingEntries: any = await CEDICT.findAll({
+        where: {
+            [Op.or]: [
+                {
+                    simp: {
+                        [Op.startsWith]: `${term}`,
+                    }
+                },
+                {
+                    trad: {
+                        [Op.startsWith]: `${term}`,
+                    }
+                },
+            ]
+        }
+    })
+    const afterFindAll = performance.now();
+    console.log(`findAll: ${afterFindAll - beforeFindAll}`);
+
+    return processMatches(matchingEntries, term, limit);
+}
+
+async function searchEnglish(term: string, limit = 100) {
+    term = term.toLowerCase();
+
+    const beforeFindAll = performance.now();
+    const matchingEntries: any = await CEDICT.findAll({
+        where: {
+            [Op.or]: [
+                {
+                    glossary: {
+                        [Op.substring]: `${term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&').trim()}`,
+                    }
+                },
+                // {
+                //     searchablePinyin: {
+                //         [Op.startsWith]: `${term}`
+                //     }
+                // },
+            ]
+        }
+    })
+    const afterFindAll = performance.now();
+    console.log(`findAll: ${afterFindAll - beforeFindAll}`);
+
+    return processMatches(matchingEntries, term, limit);
+}
+
+async function searchPinyinTones(term: string, limit = 100) {
+    term = term.toLowerCase();
+
+    const beforeFindAll = performance.now();
+    const matchingEntries: any = await CEDICT.findAll({
+        where: {
+            pinyinTones: {
+                [Op.startsWith]: `${term}`,
+            }
+        }
+    })
+    const afterFindAll = performance.now();
+    console.log(`findAll: ${afterFindAll - beforeFindAll}`);
+
+    return processMatches(matchingEntries, term, limit);
+}
+
+async function searchPinyin(term: string, limit = 100) {
+    term = term.toLowerCase();
+
+    const beforeFindAll = performance.now();
+    const matchingEntries: any = await CEDICT.findAll({
+        where: {
+            pinyin: {
+                [Op.startsWith]: `${term}`
+            }
+        }
+    })
+    const afterFindAll = performance.now();
+    console.log(`findAll: ${afterFindAll - beforeFindAll}`);
+
+    return processMatches(matchingEntries, term, limit);
 }
 
 class Word {
@@ -104,21 +152,26 @@ const returnLookUpWordEmbed = async function (message: string, startIdx: number)
     const embed = new EmbedBuilder().setColor(0x0099FF); // Sky Blue
 
     const beforeSearch = performance.now();
-    const wordInfo = await search(message);
+    // const wordInfo = await search(message);
+    let wordInfo;
     const afterSearch = performance.now();
 
     console.log(`Call to search took ${afterSearch - beforeSearch}ms.`)
 
-    // // If the searched word is alphabetical, search the matching chinese entries
-    // if (isAlpha(message)) {
-    //     // wordInfo = await search(message);
-    //     wordInfo = await search(message);
-    // } else {
-    //     wordInfo = await getEntries(message);
-    // }
+    // wordInfo = await search(message);
 
-    // todo
-    // const wordInfo = ['hi'];
+    // todo: add pinyin search
+
+    if (isPinyin(message)) {
+        wordInfo = await searchPinyin(message);
+    } else if (isNumbered(message)) {
+        wordInfo = await searchPinyinTones(message);
+    } else if (isAlpha(message)) {
+        wordInfo = await searchEnglish(message);
+    } else {
+        wordInfo = await search(message);
+    }
+
     const entriesCount = wordInfo.length;
     if (entriesCount === 0) {
         embed.setTitle(`Search`);

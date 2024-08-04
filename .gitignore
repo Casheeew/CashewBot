@@ -3,6 +3,10 @@
 /L01_P04.py
 =======
 
+# Builds
+dist
+devTarget
+
 src/assets/dictionaries
 
 # Config
@@ -87,10 +91,6 @@ typings/
 
 # Next.js build output
 .next
-
-# Nuxt.js build / generate output
-.nuxt
-dist
 
 # Gatsby files
 .cache/

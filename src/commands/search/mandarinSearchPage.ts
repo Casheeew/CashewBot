@@ -1,7 +1,7 @@
 // const chineseLexicon = require('chinese-lexicon');
 import { EmbedBuilder } from 'discord.js';
-import { CEDICT } from '../common/utils';
-import { DictionaryEntry } from '../common/utils';
+import { CEDICT } from 'database';
+import { DictionaryEntry } from '../common/types';
 import { Op } from 'sequelize';
 
 export const isAlpha = (str: string) => /^[a-zA-Z]+$/.test(str);

@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
-    "lib": ["DOM"],
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "baseUrl": "./src",
+    "outDir": "../devTarget",
+    "baseUrl": ".",
 
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -11,5 +9,5 @@
     "useUnknownInCatchVariables": false,
     "skipLibCheck": true
   },
-  "include": ["src/**/*"]
+  "include": ["**/*"]
 }

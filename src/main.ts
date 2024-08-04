@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { Client, GatewayIntentBits, Partials } from "discord.js";
 import executeCommand from "./commands";
-import { CEDICT, sequelize, updateOrCreate } from "./commands/common/utils";
+import { sequelize } from "database";
 import express from "express";
 import fs from 'fs';
 import path from 'path';

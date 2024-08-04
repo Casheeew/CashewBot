@@ -1,5 +1,5 @@
 import { Guild } from "discord.js";
-import { GuildData } from "database";
+import { GuildData } from "../../database";
 
 export const getPrefixes = async function (guild: Guild) {
   let prefix: string;

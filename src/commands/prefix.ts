@@ -1,6 +1,6 @@
 import { EmbedBuilder } from "discord.js";
 import { getPrefixes } from "./common/utils";
-import { GuildData, updateOrCreate } from "database";
+import { GuildData, updateOrCreate } from "../database";
 import type { Command } from "./common/types";
 
 const command: Command = {

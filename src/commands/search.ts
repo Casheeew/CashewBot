@@ -27,8 +27,12 @@ const lookup = async function (query: string, pageIdx: number, prefix: string) {
 const exec = async function (msg: Message, prefix: string, body: string) {
   let pageIdx = 0;
   let query = body;
+  const beforeLookup = performance.now();
   let searchResult = await lookup(body, pageIdx, prefix);
-
+  const afterLookup = performance.now();
+  
+  console.log(`Call to lookup took ${afterLookup - beforeLookup}ms.`);
+  
   // While no entries found, return entries from a smaller substring
   while (searchResult.entriesCount == 0 && query.length > 1) {
     query = query.slice(0, query.length - 1);

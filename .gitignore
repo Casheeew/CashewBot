@@ -2,6 +2,13 @@
 /cs2
 /L01_P04.py
 =======
+
+# Builds
+dist
+devTarget
+
+src/assets/dictionaries
+
 # Config
 cashewbot/config.js
 node_modules
@@ -84,10 +91,6 @@ typings/
 
 # Next.js build output
 .next
-
-# Nuxt.js build / generate output
-.nuxt
-dist
 
 # Gatsby files
 .cache/

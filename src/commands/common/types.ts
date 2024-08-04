@@ -25,3 +25,38 @@ export type Command = {
    */
   cooldown?: number;
 };
+
+// CC-CEDICT
+export type DictionaryEntry = {
+  simp: string;
+  trad: string;
+  definitions: string[];
+  glossary: string;
+  pinyin: string;
+  searchablePinyin: string;
+  pinyinTones: string;
+  statistics: {
+    hskLevel: number;
+    topWords: object[];
+    movieWordCount?: number;
+    movieWordCountPercent?: number;
+    movieWordRank?: number;
+    movieWordContexts?: number;
+    movieWordContextsPercent?: number;
+    bookWordCount?: number;
+    bookWordCountPercent?: number;
+    bookWordRank?: number;
+    movieCharCount?: number;
+    movieCharCountPercent?: number;
+    movieCharRank?: number;
+    movieCharContexts?: number;
+    movieCharContextsPercent?: number;
+    bookCharCount?: number;
+    bookCharCountPercent?: number;
+    bookCharRank?: number;
+    pinyinFrequency?: number;
+  };
+  boost: number;
+  relevance?: number;
+  usedAsComponentIn: object;
+};

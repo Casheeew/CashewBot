@@ -2,13 +2,14 @@ import { EmbedBuilder } from "discord.js";
 import { getPrefixes } from "./common/utils";
 import { GuildData, updateOrCreate } from "../database";
 import type { Command } from "./common/types";
+import CommandError from "./common/error";
 
 const command: Command = {
   id: "prefix",
   names: ["prefix"],
   description: "Change my prefix!",
   exec: async (msg, prefix, _body, args) => {
-    if (args.length === 0) throw new Error('Not enough arguments');
+    if (args.length === 0) throw new CommandError('Arguments do not match');
 
     // todo!
     if (msg.guild === null) return;

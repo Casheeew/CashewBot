@@ -33,7 +33,7 @@ const command: Command = {
       })
       .setDescription("My commands:")
       .setFooter({
-        text: "Type *!help <command>* to see more about that command!",
+        text: "Type !help <command> to see more about that command!",
         iconURL: "https://i.postimg.cc/W3FjFhDt/Red-Bird.jpgc",
       });
 

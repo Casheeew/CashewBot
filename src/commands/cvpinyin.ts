@@ -1,5 +1,5 @@
 import { placeTone } from "../utils/parsePinyin";
-import { EmbedBuilder, Message } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import type { Command } from "./common/types";
 
 const command: Command = {
@@ -8,6 +8,8 @@ const command: Command = {
   description:
     "Convert a Japanese sentence from numbered Pinyin to accented Pinyin",
   exec: async (msg, _prefix, body) => {
+    if (body === null) throw new Error("Not enough arguments");
+
     await msg.channel.send(placeTone(body));
   },
   getHelp: (prefix) => new EmbedBuilder()

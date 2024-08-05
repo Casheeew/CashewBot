@@ -1,7 +1,7 @@
 // import initiateQuiz from './commands/quiz.js';
 // import { mandarinSearch } from './commands/search.js';
 import { getPrefixes } from "./commands/common/utils";
-import { Message } from "discord.js";
+import { EmbedBuilder, Message } from "discord.js";
 import { readdirSync } from "fs";
 import path from "path";
 import type { Command } from "./commands/common/types";
@@ -44,9 +44,24 @@ async function executeCommand(msg: Message) {
     const command = commandsMap.get(commandName);
     if (command === undefined) return;
 
-    const body = content.slice(commandName.length).trim();
+    const body = content.length > commandName.length ? content.slice(commandName.length).trim() : null;
 
-    await command.exec(msg, prefix, body, args);
+    try {
+        await command.exec(msg, prefix, body, args);
+    } catch (e) {
+        if (e.message === "Not enough arguments") {
+            const helpEmbed = command.getHelp !== undefined
+                ? await command.getHelp(prefix, msg)
+                : new EmbedBuilder() // Default help embed
+                    .setColor(0x0099ff) // Sky Blue
+                    .setAuthor({ name: "叉焼", iconURL: "https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg" })
+                    .setTitle(command.id)
+                    .setDescription(command.description);
+            await msg.channel.send({ embeds: [helpEmbed] });
+        } else {
+            console.error(e);
+        }
+    }
 }
 
 export default executeCommand;

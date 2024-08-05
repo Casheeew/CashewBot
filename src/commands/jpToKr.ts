@@ -7,6 +7,8 @@ const command: Command = {
   names: ["jptokr", "jtok"],
   description: "Lookup a Japanese word on Naver JP Dict",
   exec: async (msg, _prefix, body) => {
+    if (body === null) throw new Error('Not enough arguments');
+
     const embed = await naverLookupEmbed(body);
     if (embed === undefined) return;
     await msg.channel.send({ embeds: [embed] });

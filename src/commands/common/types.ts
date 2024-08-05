@@ -1,6 +1,6 @@
 import type { Awaitable, EmbedBuilder, Message } from "discord.js";
 
-type Execute = (msg: Message, prefix: string, body: string, args: string[]) => Awaitable<void>;
+type Execute = (msg: Message, prefix: string, body: string | null, args: string[]) => Awaitable<void>;
 
 export type Command = {
   id: string;

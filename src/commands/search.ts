@@ -11,10 +11,10 @@ const openBook: ReactionCommand = { name: "OpenBook", id: "1015246188359979108" 
 const arrowLeft: ReactionCommand = { name: "LeftArrow", id: "1015443770113806491" };
 const arrowRight: ReactionCommand = { name: "RightArrow", id: "1015443768012455976" };
 
-const lookup = async function (query: string, pageIdx: number, prefix: string) {
+const lookup = async function (query: string, pageIdx: number) {
   const result = await returnLookupWordEmbed(query, pageIdx * 4);
   const maxPageIdx = Math.floor(result.entriesCount / 4);
-  
+
   result.embed.setDescription(`Page ${pageIdx + 1} of ${maxPageIdx + 1}`);
 
   return {
@@ -24,24 +24,26 @@ const lookup = async function (query: string, pageIdx: number, prefix: string) {
   }; // Each page has max. 4 entries
 };
 
-const exec = async function (msg: Message, prefix: string, body: string) {
+const exec = async function (msg: Message, prefix: string, body: string | null) {
+  if (body === null) throw new Error('Not enough arguments');
+
   let pageIdx = 0;
   let query = body;
   const beforeLookup = performance.now();
-  let searchResult = await lookup(body, pageIdx, prefix);
+  let searchResult = await lookup(body, pageIdx);
   const afterLookup = performance.now();
-  
+
   console.log(`Call to lookup took ${afterLookup - beforeLookup}ms.`);
-  
+
   // While no entries found, return entries from a smaller substring
   while (searchResult.entriesCount == 0 && query.length > 1) {
     query = query.slice(0, query.length - 1);
-    searchResult = await lookup(query, pageIdx, prefix);
+    searchResult = await lookup(query, pageIdx);
   }
 
   // If no entries found at all, return the original lookup
-  if ( searchResult.entriesCount == 0 && query.length == 1  ) {
-    searchResult = await lookup(query, pageIdx, prefix);
+  if (searchResult.entriesCount == 0 && query.length == 1) {
+    searchResult = await lookup(query, pageIdx);
   }
 
   const result = await msg.channel.send({ embeds: [searchResult.embed] });
@@ -52,12 +54,12 @@ const exec = async function (msg: Message, prefix: string, body: string) {
         break;
       case arrowLeft.name:
         if (pageIdx > 0) pageIdx -= 1;
-        searchResult = await lookup(query, pageIdx, prefix);
+        searchResult = await lookup(query, pageIdx);
         result.edit({ embeds: [searchResult.embed] });
         break;
       case arrowRight.name:
         if (pageIdx < searchResult.maxPageIdx) pageIdx += 1;
-        searchResult = await lookup(query, pageIdx, prefix);
+        searchResult = await lookup(query, pageIdx);
         result.edit({ embeds: [searchResult.embed] });
         break;
     }
@@ -85,10 +87,10 @@ const exec = async function (msg: Message, prefix: string, body: string) {
     idle: 180000,
     dispose: true,
   });
-  collector.on("collect", async (reaction, user) => {
+  collector.on("collect", async (reaction) => {
     switchBetweeenReactions(reaction);
   });
-  collector.on("remove", async (reaction, user) => {
+  collector.on("remove", async (reaction) => {
     switchBetweeenReactions(reaction);
   });
 };

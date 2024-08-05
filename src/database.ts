@@ -1,4 +1,4 @@
-import { Sequelize, DataType, ModelCtor, Model } from "sequelize-typescript";
+import { Sequelize, DataType } from "sequelize-typescript";
 
 const databaseURL = process.env.DB_URL;
 if (typeof databaseURL === "undefined") {
@@ -67,6 +67,7 @@ export const CEDICT = sequelize.define("CEDICT", {
 })
 
 // Update or create a new SQL model
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function updateOrCreate(model: any, where: any, newItem: any) {
   const foundItem = await model.findOne({ where });
   if (foundItem === null) {

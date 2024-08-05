@@ -8,6 +8,8 @@ const command: Command = {
   names: ["prefix"],
   description: "Change my prefix!",
   exec: async (msg, prefix, _body, args) => {
+    if (args.length === 0) throw new Error('Not enough arguments');
+
     // todo!
     if (msg.guild === null) return;
 

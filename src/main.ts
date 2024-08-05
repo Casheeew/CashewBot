@@ -3,8 +3,6 @@ import { Client, GatewayIntentBits, Partials } from "discord.js";
 import executeCommand from "./commands";
 import { sequelize } from "./database";
 import express from "express";
-import fs from 'fs';
-import path from 'path';
 
 /* Init CashewBot */
 

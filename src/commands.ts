@@ -32,7 +32,7 @@ async function executeCommand(msg: Message) {
     if (content === "") return;
 
     const args = content.split(" ");
-    const commandName = args.shift();
+    const commandName = args.shift()?.toLowerCase();
     if (commandName === undefined) return;
 
     const command = commandsMap.get(commandName);

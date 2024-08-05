@@ -1,6 +1,7 @@
 import returnLookupWordEmbed from "./search/mandarinSearchPage";
 import { EmbedBuilder, Message, MessageReaction, User } from "discord.js";
 import { Command } from "./common/types";
+import CommandError from "./common/error";
 
 type ReactionCommand = {
   name: string;
@@ -25,7 +26,7 @@ const lookup = async function (query: string, pageIdx: number) {
 };
 
 const exec = async function (msg: Message, prefix: string, body: string | null) {
-  if (body === null) throw new Error('Not enough arguments');
+  if (body === null) throw new CommandError('Arguments do not match');
 
   let pageIdx = 0;
   let query = body;

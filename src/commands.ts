@@ -4,6 +4,7 @@ import { getPrefixes } from "./commands/common/utils";
 import { EmbedBuilder, Message } from "discord.js";
 import type { Command } from "./commands/common/types";
 import commands from "./commands/common/allCommands";
+import CommandError from "./commands/common/error";
 
 const commandsMap = new Map<string, Command>();
 
@@ -42,7 +43,7 @@ async function executeCommand(msg: Message) {
     try {
         await command.exec(msg, prefix, body, args);
     } catch (e) {
-        if (e.message === "Not enough arguments") {
+        if (e instanceof CommandError) {
             const helpEmbed = command.getHelp !== undefined
                 ? await command.getHelp(prefix, msg)
                 : new EmbedBuilder() // Default help embed

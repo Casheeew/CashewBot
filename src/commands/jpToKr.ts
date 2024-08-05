@@ -1,13 +1,14 @@
 import naverLookupEmbed from "./JPtoKR/naverLookupPage";
 import { EmbedBuilder } from "discord.js";
 import type { Command } from "./common/types";
+import CommandError from "./common/error";
 
 const command: Command = {
   id: "JPtoKR",
   names: ["jptokr", "jtok"],
   description: "Lookup a Japanese word on Naver JP Dict",
   exec: async (msg, _prefix, body) => {
-    if (body === null) throw new Error('Not enough arguments');
+    if (body === null) throw new CommandError('Arguments do not match');
 
     const embed = await naverLookupEmbed(body);
     if (embed === undefined) return;

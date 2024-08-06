@@ -9,7 +9,7 @@ async function loadToDatabase(filePath: string) {
     const entries = JSON.parse(fs.readFileSync(filePath, "utf-8"))
 
     while (entries.length > 0) {
-        const chunk = entries.splice(0, 25000);
+        const chunk = entries.splice(0, 30000);
         await CEDICT.bulkCreate(chunk);
     }
     

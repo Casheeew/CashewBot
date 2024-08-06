@@ -56,14 +56,22 @@ export const GuildData = sequelize.define("guildData", {
 export const CEDICT = sequelize.define("CEDICT", {
   simp: DataType.STRING,
   trad: DataType.STRING,
-  definitions: DataType.ARRAY(DataType.TEXT),
-  glossary: DataType.TEXT,
+  definitions: DataType.TEXT, // string of definitions delimited by '\u241D'
   pinyin: DataType.STRING,
   searchablePinyin: DataType.STRING,
   pinyinTones: DataType.STRING,
   statistics: DataType.JSON,
   boost: DataType.DOUBLE,
   usedAsComponentIn: DataType.JSON,
+})
+
+export const KRDICT_EN = sequelize.define("KRDICT_EN", {
+  word: DataType.STRING,
+  hanja: DataType.STRING,
+  stars: DataType.SMALLINT,
+  partOfSpeech: DataType.STRING,
+  audioURL: DataType.STRING,
+  definitions: DataType.TEXT,
 })
 
 // Update or create a new SQL model

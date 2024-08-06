@@ -1,4 +1,4 @@
-import returnLookupWordEmbed from "./search/mandarinSearchPage";
+import returnLookupWordEmbed from "./search/koreanSearchPage";
 import { EmbedBuilder, Message, MessageReaction, User } from "discord.js";
 import { Command } from "./common/types";
 import CommandError from "./common/error";
@@ -97,9 +97,9 @@ const exec = async function (msg: Message, _prefix: string, body: string | null)
 };
 
 const command: Command = {
-  id: 'search',
-  names: ['search', 's'],
-  description: 'Search for a Chinese or English word on CC-CEDICT',
+  id: 'ksearch',
+  names: ['ksearch', 'ks'],
+  description: 'Search for a Korean word on KRDICT',
   exec,
   getHelp: (prefix) => new EmbedBuilder()
     .setColor(0x0099ff) // Sky Blue
@@ -107,7 +107,7 @@ const command: Command = {
       name: "叉焼",
       iconURL: "https://i.postimg.cc/W3FjFhDt/Red-Bird.jpg",
     })
-    .setTitle("Mandarin Search")
+    .setTitle("Korean Search")
     .setDescription(
       `Say **${prefix}s** or **${prefix}search** to search a Mandarin or English word!\n\nexample: **${prefix}s 蔀**`
     )

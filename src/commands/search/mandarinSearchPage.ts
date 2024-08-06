@@ -8,9 +8,9 @@ const isAlpha = (str: string) => /.*[a-zA-Z]+.*/.test(str);
 const isPinyin = (str: string) => /.*[ĀāÁáǍǎÀàĒēÉéĚěÈèĪīÍíǏǐÌìŌōÓóǑǒÒòŪūÚúǓǔÙùÜüǗǘǙǚǛǜ«»⸢⸣⸤⸥]+.*/.test(str);
 const isNumbered = (str: string) => /.*[a-zA-Z]+[1-9].*/.test(str);
 
-function processMatches(entries: DictionaryEntry[], term: string, limit: number) {
+function processMatches(entries: any[], term: string, limit: number): DictionaryEntry[] {
     return entries
-        .map((entry: DictionaryEntry) => {
+        .map((entry: any) => {
             const { definitions, simp, trad, searchablePinyin, pinyin, pinyinTones } = entry;
             let relevance = 1;
             const definitionsCount = definitions.length;
@@ -27,6 +27,7 @@ function processMatches(entries: DictionaryEntry[], term: string, limit: number)
                 relevance += 10;
             }
             entry.relevance = relevance;
+            entry.definitions = entry.definitions.split('\u241D');
             return entry;
         })
         .sort((a: DictionaryEntry, b: DictionaryEntry) => {
@@ -78,7 +79,7 @@ async function searchEnglish(term: string, limit = 100) {
     const beforeFindAll = performance.now();
     const matchingEntries: any = await CEDICT.findAll({
         where: {
-            glossary: {
+            definitions: {
                 [Op.substring]: `${term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&').trim()}`,
             }
             // {
@@ -150,14 +151,12 @@ const returnLookUpWordEmbed = async function (message: string, startIdx: number)
     const beforeSearch = performance.now();
     // const wordInfo = await search(message);
     let wordInfo;
-    const afterSearch = performance.now();
-
-    console.log(`Call to search took ${afterSearch - beforeSearch}ms.`)
-
+    
+    
     // wordInfo = await search(message);
-
+    
     // todo: add pinyin search
-
+    
     if (isPinyin(message)) {
         wordInfo = await searchPinyin(message);
     } else if (isNumbered(message)) {
@@ -167,7 +166,9 @@ const returnLookUpWordEmbed = async function (message: string, startIdx: number)
     } else {
         wordInfo = await search(message);
     }
-
+    const afterSearch = performance.now();
+    console.log(`Call to search took ${afterSearch - beforeSearch}ms.`)
+    
     const entriesCount = wordInfo.length;
     if (entriesCount === 0) {
         embed.setTitle(`Search`);

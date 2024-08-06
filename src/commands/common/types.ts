@@ -31,7 +31,6 @@ export type DictionaryEntry = {
   simp: string;
   trad: string;
   definitions: string[];
-  glossary: string;
   pinyin: string;
   searchablePinyin: string;
   pinyinTones: string;
@@ -60,3 +59,12 @@ export type DictionaryEntry = {
   relevance?: number;
   usedAsComponentIn: object;
 };
+
+export type KRDICTEntry = {
+  word: string,
+  hanja: string,
+  stars: number,
+  partOfSpeech: string,
+  audioURL: string,
+  definitions: string[],
+}
